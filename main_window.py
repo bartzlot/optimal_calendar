@@ -1,13 +1,16 @@
 import typing
 from PyQt6.QtWidgets import QWidget, QApplication, QMainWindow, QCalendarWidget, QDateEdit, QLabel, QPushButton
-from PyQt6.QtGui import QPalette, QTextCharFormat, QColor
-from PyQt6.QtCore import Qt, QDate, QDateTime
+from PyQt6.QtGui import QPalette, QTextCharFormat, QColor, QPainter
+from PyQt6.QtCore import Qt, QDate, QDateTime, QRect, QPoint
 from PyQt6 import uic
 import sys
+from database import DatabaseManager
 
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, DatabaseManager):
+
+
     def __init__(self, parent = None):
         super(MainWindow, self).__init__(parent)
         uic.loadUi("window_design.ui", self)
@@ -27,22 +30,39 @@ class MainWindow(QMainWindow):
         self.cal.clicked.connect(self.date_is_clicked)
         self.date_select.clicked.connect(self.setting_date_using_boxes)
 
+        self.holidays_format = QTextCharFormat()
+        self.holidays_format.setBackground(QColor('orange'))
+        self.holidays_format.setForeground(QColor('black'))
 
+        self.holiday_highlighted_format = QTextCharFormat()
+        self.holiday_highlighted_format.setBackground(QColor(255,213,128,255))
+        self.holiday_highlighted_format.setForeground(QColor('black'))
+
+        self.holidays_full = DatabaseManager.getting_data_excel(self, 'polish_database.xlsx')
+        self.holidays_dates = DatabaseManager.extracting_dates(DatabaseManager(), self.holidays_full)
         
     def setting_current_date(self):
         self.start_date_box.setDateTime(QDateTime.currentDateTime())
         self.end_date_box.setDateTime(QDateTime.currentDateTime())
 
 
-        
+    def mark_holidays(self):
+        for i in self.holidays_dates:
+            print(i)
+            self.cal.setDateTextFormat(i, self.holidays_format)
+
 
     def format_range(self, format):
         if self.begin_date and self.end_date:
             bd = min(self.begin_date, self.end_date)
             ed = max(self.begin_date, self.end_date)
             while bd <= ed:
-                self.cal.setDateTextFormat(bd, format)
-                bd = bd.addDays(1)
+                if bd in self.holidays_dates:
+                    self.cal.setDateTextFormat(bd, self.holiday_highlighted_format)
+                    bd = bd.addDays(1)
+                else:
+                    self.cal.setDateTextFormat(bd, format)
+                    bd = bd.addDays(1)
         
     def setting_date_using_boxes(self):
 
@@ -64,6 +84,7 @@ class MainWindow(QMainWindow):
 
     def date_is_clicked(self, date_val):
         # reset highlighting of previously selected date range
+        self.mark_holidays()
         self.format_range(QTextCharFormat())
         if QApplication.keyboardModifiers() & Qt.KeyboardModifier.ShiftModifier and self.begin_date:
             self.end_date = date_val
@@ -81,5 +102,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.setting_current_date()
+    window.mark_holidays()
     window.show()
     sys.exit(app.exec())
