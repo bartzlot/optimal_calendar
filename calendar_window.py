@@ -1,18 +1,12 @@
-import typing
-from PyQt6.QtWidgets import QWidget, QApplication, QMainWindow, QCalendarWidget, QDateEdit, QLabel, QPushButton
-from PyQt6.QtGui import QPalette, QTextCharFormat, QColor, QPainter
-from PyQt6.QtCore import Qt, QDate, QDateTime, QRect, QPoint
-from PyQt6 import uic
-import sys
-from database import DatabaseManager
+from lib import *
 
 
 
-class MainWindow(QMainWindow, DatabaseManager):
+class CalendarWindow(QMainWindow, DatabaseManager):
 
 
     def __init__(self, parent = None):
-        super(MainWindow, self).__init__(parent)
+        super(CalendarWindow, self).__init__(parent)
         uic.loadUi("window_design.ui", self)
         self.main_widget = self.findChild(QWidget, "centralwidget")
         self.cal = self.findChild(QCalendarWidget, "calendarWidget")
@@ -161,10 +155,3 @@ class MainWindow(QMainWindow, DatabaseManager):
             self.day_description.setStyleSheet('color: rgb(255, 233, 204)')            
             self.day_description.setText(f'Weekend: {day_name}')
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.setting_current_date()
-    window.mark_holidays()
-    window.show()
-    sys.exit(app.exec())

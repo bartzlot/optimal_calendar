@@ -1,5 +1,4 @@
-import pandas as pd
-from PyQt6.QtCore import Qt, QDate, QDateTime
+from lib import *
 
 class DatabaseManager():
 
@@ -24,5 +23,6 @@ class DatabaseManager():
         for i in data_dict:
             dates_data.append(i["DATE"])
         return dates_data
+    
 
 db = DatabaseManager()
