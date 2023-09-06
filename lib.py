@@ -6,10 +6,11 @@ import pandas as pd
 from PyQt6.QtWidgets import (QWidget, QApplication, 
                              QMainWindow, QCalendarWidget, 
                              QDateEdit, QLabel, QPushButton,
-                             QListWidget)
+                             QTableWidget, QTableWidgetItem,
+                             QDialog, QTextEdit, QDialogButtonBox)
 
 from PyQt6.QtGui import (QPalette, QTextCharFormat, 
-                         QColor, QPainter)
+                         QColor, QPainter,)
 
 from PyQt6.QtCore import (Qt, QDate, QDateTime, 
                           QRect, QPoint)
