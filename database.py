@@ -11,7 +11,6 @@ class DatabaseManager():
         self.df = pd.read_excel(directory)
         self.df['DATE'] = self.df['DATE'].dt.strftime('%Y-%m-%d')
 
-        
         for i, date in enumerate(self.df['DATE']):
             self.df['DATE'][i] = QDate.fromString(date, 'yyyy-MM-dd')
         

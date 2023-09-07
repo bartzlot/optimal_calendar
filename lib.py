@@ -13,7 +13,7 @@ from PyQt6.QtGui import (QPalette, QTextCharFormat,
                          QColor, QPainter,)
 
 from PyQt6.QtCore import (Qt, QDate, QDateTime, 
-                          QRect, QPoint)
+                          QRect, QPoint, pyqtSlot)
 from PyQt6 import uic
 
 import sys

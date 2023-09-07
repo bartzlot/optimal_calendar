@@ -11,8 +11,17 @@ class EventList(QMainWindow):
         self.edit_button = self.findChild(QPushButton, "edit_button")
         self.exit_button = self.findChild(QPushButton, "exit_button")
         self.holidays_list = self.findChild(QTableWidget, "holidays_list")
+
+        self.database = DatabaseManager.getting_data_excel(DatabaseManager, 'polish_database.xlsx')
+
         self.creating_table()
-        self.inserting_dict_to_list(DatabaseManager.getting_data_excel(DatabaseManager, 'polish_database.xlsx'))
+        self.inserting_dict_to_list()
+
+        self.add_button.clicked.connect(self.add_button_event)
+        self.edit_button.clicked.connect(self.edit_button_event)
+
+
+
 
     def creating_table(self):
         self.holidays_list.insertColumn(0)
@@ -22,43 +31,72 @@ class EventList(QMainWindow):
         self.holidays_list.setColumnWidth(1, 130)
 
 
-    def inserting_dict_to_list(self, data: dict):
-        for index, records in enumerate(data):
+    def inserting_dict_to_list(self):
+        for index, records in enumerate(self.database):
             self.holidays_list.insertRow(index)
             self.holidays_list.setItem(index, 0, QTableWidgetItem(records['DAY_DESC']))
-            self.holidays_list.setItem(index, 1, QTableWidgetItem(records['DATE'].toString("yyyy.MM.dd")))
+            self.holidays_list.setItem(index, 1, QTableWidgetItem(records['DATE'].toString("dd.MM.yyyy")))
         
 
     def add_button_event(self): #TODO
-        add_action = DateEdit() 
+        add_action = DateEdit(self)
+        add_action.adding_new_date()
+        add_action.exec()
+
+
+    def edit_button_event(self):
+        edit_action = DateEdit(self)
+        
+        selected_rows = set()
+        selected_items = self.holidays_list.selectedItems()
+
+        for item in selected_items:
+            selected_rows.add(item.row())
+        
+        for data in selected_rows:
+            edit_action.editing_date(self.database[data]['DAY_DESC'],self.database[data]['DATE'])
+        edit_action.exec()
 
 
 class DateEdit(QDialog): #TODO
-    def __init__(self, parent = None):
+    def __init__(self, parent = EventList):
         super(DateEdit, self).__init__(parent)
         uic.loadUi("date_insertion.ui", self)
         
         self.day_description_input = self.findChild(QTextEdit, "day_desc_textedit")
-        self.date_input = self.findChild(QTextEdit, "date_texedit")
-        self.dialog_options = self.findChild(QDialogButtonBox, "buttonbox")
-
-    
+        self.date_input = self.findChild(QDateEdit, "dateEdit")
+        self.dialog_options = self.findChild(QDialogButtonBox, "buttonBox")
+        self.date_input.setDateTime(QDateTime.currentDateTime())
+        self.dialog_options.accepted.connect(self.adding_new_date)
+        
     def adding_new_date(self):
-        pass
+        self.date_input.setDateTime(QDateTime.currentDateTime())
+        day_desc = self.day_description_input.toPlainText()
+        picked_date = self.date_input.date()
+        new_date = {'DATE_DESC': day_desc, 
+                    'DATE': picked_date}
+        return new_date
 
 
     def deleting_date(self):
         pass
 
 
-    def editing_date(self):
-        pass
+    def editing_date(self, day_description: str, days_date: QDate):
+        self.date_input.setDate(days_date)
+        self.day_description_input.setText(day_description)
+        day_desc = self.day_description_input.toPlainText()
+        picked_date = self.date_input.date()
+        edited_date = {'DATE_DESC': day_desc, 
+                        'DATE': picked_date}
+        return edited_date
+        
 
 
-    
-app = QApplication(sys.argv)
-window = DateEdit()
-window.show()
-sys.exit(app.exec())    
+
+# app = QApplication(sys.argv)
+# window = DateEdit()
+# window.show()
+# sys.exit(app.exec())    
 
 
