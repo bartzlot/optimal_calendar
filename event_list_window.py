@@ -40,8 +40,8 @@ class EventList(QMainWindow):
 
     def add_button_event(self): #TODO
         add_action = DateEdit(self)
-        add_action.adding_new_date()
-        add_action.exec()
+        new_date = add_action.adding_new_date()
+        print(new_date)
 
 
     def edit_button_event(self):
@@ -54,8 +54,10 @@ class EventList(QMainWindow):
             selected_rows.add(item.row())
         
         for data in selected_rows:
-            edit_action.editing_date(self.database[data]['DAY_DESC'],self.database[data]['DATE'])
-        edit_action.exec()
+            new_date = edit_action.editing_date(self.database[data]['DAY_DESC'], self.database[data]['DATE'])
+            print(new_date)
+
+        
 
 
 class DateEdit(QDialog): #TODO
@@ -66,33 +68,36 @@ class DateEdit(QDialog): #TODO
         self.day_description_input = self.findChild(QTextEdit, "day_desc_textedit")
         self.date_input = self.findChild(QDateEdit, "dateEdit")
         self.dialog_options = self.findChild(QDialogButtonBox, "buttonBox")
-        self.date_input.setDateTime(QDateTime.currentDateTime())
-        self.dialog_options.accepted.connect(self.adding_new_date)
+        self.dialog_options.accepted.connect(self.accept) 
+        self.dialog_options.rejected.connect(self.reject) 
         
     def adding_new_date(self):
         self.date_input.setDateTime(QDateTime.currentDateTime())
-        day_desc = self.day_description_input.toPlainText()
-        picked_date = self.date_input.date()
-        new_date = {'DATE_DESC': day_desc, 
-                    'DATE': picked_date}
-        return new_date
+        result = self.exec()
+        if result == QDialog.DialogCode.Accepted:
+            edited_date = {'DATE_DESC': self.day_description_input.toPlainText(),
+                           'DATE': self.date_input.date()}
+            return edited_date
+        else:
+            return None
 
 
     def deleting_date(self):
+        print('sads')
         pass
 
 
     def editing_date(self, day_description: str, days_date: QDate):
+        
         self.date_input.setDate(days_date)
         self.day_description_input.setText(day_description)
-        day_desc = self.day_description_input.toPlainText()
-        picked_date = self.date_input.date()
-        edited_date = {'DATE_DESC': day_desc, 
-                        'DATE': picked_date}
-        return edited_date
-        
-
-
+        result = self.exec()
+        if result == QDialog.DialogCode.Accepted:
+            edited_date = {'DATE_DESC': self.day_description_input.toPlainText(),
+                           'DATE': self.date_input.date()}
+            return edited_date
+        else:
+            return None
 
 # app = QApplication(sys.argv)
 # window = DateEdit()
