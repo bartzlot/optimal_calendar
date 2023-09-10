@@ -1,6 +1,6 @@
 from lib import *
 
-class MainMenu(QMainWindow):
+class MainMenu(QMainWindow, DatabaseManager):
 
     def __init__(self, parent = None):
         super(MainMenu, self).__init__(parent)
@@ -28,7 +28,6 @@ class MainMenu(QMainWindow):
 
     def quit_button_event(self):
         QApplication.quit()
-
 
 app = QApplication(sys.argv)
 window = MainMenu()

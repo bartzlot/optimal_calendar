@@ -19,6 +19,10 @@ from PyQt6 import uic
 import sys
 
 #imports from different files
+
 from database import DatabaseManager
 from calendar_window import CalendarWindow
 from event_list_window import EventList
+from main_menu import MainMenu
+
+

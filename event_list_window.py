@@ -13,12 +13,12 @@ class EventList(QMainWindow):
         self.holidays_list = self.findChild(QTableWidget, "holidays_list")
 
         self.database = DatabaseManager.getting_data_excel(DatabaseManager, 'polish_database.xlsx')
-
         self.creating_table()
-        self.inserting_dict_to_list()
-
+        self.inserting_data_to_list()
         self.add_button.clicked.connect(self.add_button_event)
         self.edit_button.clicked.connect(self.edit_button_event)
+        self.exit_button.clicked.connect(self.exit_button_event)
+        self.del_button.clicked.connect(self.delete_button_event)
 
 
 
@@ -31,22 +31,32 @@ class EventList(QMainWindow):
         self.holidays_list.setColumnWidth(1, 130)
 
 
-    def inserting_dict_to_list(self):
+    def inserting_data_to_list(self):
         for index, records in enumerate(self.database):
             self.holidays_list.insertRow(index)
             self.holidays_list.setItem(index, 0, QTableWidgetItem(records['DAY_DESC']))
             self.holidays_list.setItem(index, 1, QTableWidgetItem(records['DATE'].toString("dd.MM.yyyy")))
-        
 
-    def add_button_event(self): #TODO
+
+    def updating_list(self):
+        for index, records in enumerate(self.database):
+            self.holidays_list.setItem(index, 0, QTableWidgetItem(records['DAY_DESC']))
+            self.holidays_list.setItem(index, 1, QTableWidgetItem(records['DATE'].toString("dd.MM.yyyy")))
+
+
+    def add_button_event(self):
         add_action = DateEdit(self)
         new_date = add_action.adding_new_date()
-        print(new_date)
+        self.database = DatabaseManager.sorting_database(DatabaseManager, self.database, new_date)
+        # MainMenu.database = self.database #TODO creating one database
+        # dates_only = DatabaseManager.extracting_dates(DatabaseManager, self.database)
+
+
 
 
     def edit_button_event(self):
         edit_action = DateEdit(self)
-        
+        new_date = []
         selected_rows = set()
         selected_items = self.holidays_list.selectedItems()
 
@@ -55,12 +65,33 @@ class EventList(QMainWindow):
         
         for data in selected_rows:
             new_date = edit_action.editing_date(self.database[data]['DAY_DESC'], self.database[data]['DATE'])
-            print(new_date)
+            if new_date != None:
+                self.database = DatabaseManager.editing_database(DatabaseManager, self.database, new_date, data)
+            else:
+                continue
+        self.updating_list()
 
+
+
+    def delete_button_event(self):
+        selected_rows = set()
+        selected_items = self.holidays_list.selectedItems()
+
+        for item in selected_items:
+            selected_rows.add(item.row())
+        
+        for data in selected_rows:
+            self.database = DatabaseManager.deleting_records(DatabaseManager, self.database, data)
+        self.updating_list()
+
+
+
+    def exit_button_event(self):
+        self.close()
         
 
 
-class DateEdit(QDialog): #TODO
+class DateEdit(QDialog):
     def __init__(self, parent = EventList):
         super(DateEdit, self).__init__(parent)
         uic.loadUi("date_insertion.ui", self)
@@ -75,7 +106,7 @@ class DateEdit(QDialog): #TODO
         self.date_input.setDateTime(QDateTime.currentDateTime())
         result = self.exec()
         if result == QDialog.DialogCode.Accepted:
-            edited_date = {'DATE_DESC': self.day_description_input.toPlainText(),
+            edited_date = {'DAY_DESC': self.day_description_input.toPlainText(),
                            'DATE': self.date_input.date()}
             return edited_date
         else:
@@ -93,11 +124,14 @@ class DateEdit(QDialog): #TODO
         self.day_description_input.setText(day_description)
         result = self.exec()
         if result == QDialog.DialogCode.Accepted:
-            edited_date = {'DATE_DESC': self.day_description_input.toPlainText(),
+            edited_date = {'DAY_DESC': self.day_description_input.toPlainText(),
                            'DATE': self.date_input.date()}
             return edited_date
         else:
             return None
+    
+
+
 
 # app = QApplication(sys.argv)
 # window = DateEdit()

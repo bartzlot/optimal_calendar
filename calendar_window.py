@@ -2,7 +2,7 @@ from lib import *
 
 
 
-class CalendarWindow(QMainWindow, DatabaseManager):
+class CalendarWindow(QMainWindow):
 
 
     def __init__(self, parent = None):
@@ -19,15 +19,14 @@ class CalendarWindow(QMainWindow, DatabaseManager):
         self.days_selected = self.findChild(QLabel, "days_selected_label")
         self.days_selected_num = self.findChild(QLabel, "DaysSelectedNumber")
         self.day_description = self.findChild(QLabel, "day_desc")
-
+        self.holidays_full = DatabaseManager.getting_data_excel(self, 'polish_database.xlsx')
+        self.holidays_dates = DatabaseManager.extracting_dates(DatabaseManager(), self.holidays_full)
         self.begin_date = None
         self.end_date = None
 
         self.highlight_format = QTextCharFormat()
         self.highlight_format.setBackground(QColor("lightblue"))
         self.highlight_format.setForeground(QColor("black"))
-        self.cal.clicked.connect(self.date_is_clicked)
-        self.date_select.clicked.connect(self.setting_date_using_boxes)
 
         self.holidays_format = QTextCharFormat()
         self.holidays_format.setBackground(QColor('orange'))
@@ -37,8 +36,10 @@ class CalendarWindow(QMainWindow, DatabaseManager):
         self.holiday_highlighted_format.setBackground(QColor(255,213,128,255))
         self.holiday_highlighted_format.setForeground(QColor('black'))
 
-        self.holidays_full = DatabaseManager.getting_data_excel(self, 'polish_database.xlsx')
-        self.holidays_dates = DatabaseManager.extracting_dates(DatabaseManager(), self.holidays_full)
+        self.cal.clicked.connect(self.date_is_clicked)
+        self.date_select.clicked.connect(self.setting_date_using_boxes)
+        self.setting_current_date()
+        self.mark_holidays()
         
     def setting_current_date(self):
         self.start_date_box.setDateTime(QDateTime.currentDateTime())
@@ -48,6 +49,12 @@ class CalendarWindow(QMainWindow, DatabaseManager):
     def mark_holidays(self):
         for i in self.holidays_dates:
             self.cal.setDateTextFormat(i, self.holidays_format)
+
+
+    def update_calendar_by_list(self):
+        self.holidays_full = DatabaseManager.getting_data_excel(self, 'polish_copy.xlsx')
+        self.holidays_dates = DatabaseManager.extracting_dates(DatabaseManager(), self.holidays_full)
+        self.mark_holidays()
 
 
     def format_range(self, format):
@@ -154,4 +161,6 @@ class CalendarWindow(QMainWindow, DatabaseManager):
         if date not in self.holidays_dates and day_num not in WORK_DAYS:
             self.day_description.setStyleSheet('color: rgb(255, 233, 204)')            
             self.day_description.setText(f'Weekend: {day_name}')
+
+
 
