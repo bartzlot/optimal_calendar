@@ -2,6 +2,9 @@ from lib import *
 
 class DatabaseManager():
 
+    def __init__(self) -> None: 
+        self.database = []
+        self.dates_list = []
     def getting_data_excel(self, directory: str):
         # polish_database.xlsx
         df = pd.read_excel(directory)
@@ -24,6 +27,7 @@ class DatabaseManager():
             database[i]['DATE'] = date['DATE'].toString('yyyy/MM/dd')
         df = pd.DataFrame.from_dict(database)
         df['DATE'] = pd.to_datetime(df['DATE'], format='%Y/%m/%d')
+
         df.to_excel(file_name)
 
 

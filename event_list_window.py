@@ -1,8 +1,11 @@
 from lib import *
 
 class EventList(QMainWindow):
-
-    def __init__(self, parent = None):
+    data_added = pyqtSignal(list)
+    data_updated = pyqtSignal(list)
+    data_deleted = pyqtSignal(list)
+    database_updated = pyqtSignal(list)
+    def __init__(self, db_manager, calendar, parent = None):
         super(EventList, self).__init__(parent)
         uic.loadUi("holidays_list.ui", self)
 
@@ -11,8 +14,9 @@ class EventList(QMainWindow):
         self.edit_button = self.findChild(QPushButton, "edit_button")
         self.exit_button = self.findChild(QPushButton, "exit_button")
         self.holidays_list = self.findChild(QTableWidget, "holidays_list")
-
-        self.database = DatabaseManager.getting_data_excel(DatabaseManager, 'polish_database.xlsx')
+        self.db_manager = db_manager
+        self.database = db_manager.getting_data_excel('polish_database.xlsx')
+        self.calendar_window_instance = calendar
         self.creating_table()
         self.inserting_data_to_list()
         self.add_button.clicked.connect(self.add_button_event)
@@ -38,6 +42,8 @@ class EventList(QMainWindow):
             self.holidays_list.setItem(index, 1, QTableWidgetItem(records['DATE'].toString("dd.MM.yyyy")))
 
 
+
+
     def updating_list(self):
         for index, records in enumerate(self.database):
             self.holidays_list.setItem(index, 0, QTableWidgetItem(records['DAY_DESC']))
@@ -47,9 +53,11 @@ class EventList(QMainWindow):
     def add_button_event(self):
         add_action = DateEdit(self)
         new_date = add_action.adding_new_date()
-        self.database = DatabaseManager.sorting_database(DatabaseManager, self.database, new_date)
-        # MainMenu.database = self.database #TODO creating one database
-        # dates_only = DatabaseManager.extracting_dates(DatabaseManager, self.database)
+        self.database = self.db_manager.sorting_database(self.database, new_date)
+        self.dates_list = self.db_manager.extracting_dates(self.database)
+        self.updating_list()
+        self.data_added.emit(self.dates_list)
+        self.database_updated.emit(self.database)
 
 
 
@@ -66,10 +74,13 @@ class EventList(QMainWindow):
         for data in selected_rows:
             new_date = edit_action.editing_date(self.database[data]['DAY_DESC'], self.database[data]['DATE'])
             if new_date != None:
-                self.database = DatabaseManager.editing_database(DatabaseManager, self.database, new_date, data)
+                self.database = self.db_manager.editing_database(self.database, new_date, data)
             else:
                 continue
         self.updating_list()
+        self.dates_list = self.db_manager.extracting_dates(self.database)
+        self.data_updated.emit(self.dates_list)
+        self.database_updated.emit(self.database)
 
 
 
@@ -81,8 +92,11 @@ class EventList(QMainWindow):
             selected_rows.add(item.row())
         
         for data in selected_rows:
-            self.database = DatabaseManager.deleting_records(DatabaseManager, self.database, data)
+            self.database = self.db_manager.deleting_records(self.database, data)
         self.updating_list()
+        self.dates_list = self.db_manager.extracting_dates(self.database)
+        self.data_updated.emit(self.dates_list)
+        self.database_updated.emit(self.database)
 
 
 

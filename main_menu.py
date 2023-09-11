@@ -1,6 +1,6 @@
 from lib import *
 
-class MainMenu(QMainWindow, DatabaseManager):
+class MainMenu(QMainWindow):
 
     def __init__(self, parent = None):
         super(MainMenu, self).__init__(parent)
@@ -10,19 +10,28 @@ class MainMenu(QMainWindow, DatabaseManager):
         self.options_button = self.findChild(QPushButton, "options_button")
         self.quit_button = self.findChild(QPushButton, "quit_button")
 
+        self.db_manager = DatabaseManager()
+        self.db_manager.database = self.db_manager.getting_data_excel('polish_database.xlsx')
+        self.db_manager.dates_list = self.db_manager.extracting_dates(self.db_manager.database)
+        self.calendar = CalendarWindow(self.db_manager)
+
+        self.list = EventList(self.db_manager, self.calendar)
 
         self.event_list_button.clicked.connect(self.options_button_event)
         self.calendar_button.clicked.connect(self.calendar_button_event)
         self.quit_button.clicked.connect(self.quit_button_event)
-    
+
+        self.list.database_updated.connect(self.calendar.updating_database)
+        self.list.data_added.connect(self.calendar.mark_holidays_from_list)
+        self.list.data_updated.connect(self.calendar.mark_holidays_from_list)
+        self.list.data_deleted.connect(self.calendar.mark_holidays_from_list)
+        
 
     def calendar_button_event(self):
-        self.calendar = CalendarWindow()
         self.calendar.show()
 
 
     def options_button_event(self):
-        self.list = EventList()
         self.list.show()
 
 

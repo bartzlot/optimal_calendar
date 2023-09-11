@@ -5,7 +5,7 @@ from lib import *
 class CalendarWindow(QMainWindow):
 
 
-    def __init__(self, parent = None):
+    def __init__(self, db_manager, parent = None):
         super(CalendarWindow, self).__init__(parent)
         uic.loadUi("window_design.ui", self)
         self.main_widget = self.findChild(QWidget, "centralwidget")
@@ -19,8 +19,9 @@ class CalendarWindow(QMainWindow):
         self.days_selected = self.findChild(QLabel, "days_selected_label")
         self.days_selected_num = self.findChild(QLabel, "DaysSelectedNumber")
         self.day_description = self.findChild(QLabel, "day_desc")
-        self.holidays_full = DatabaseManager.getting_data_excel(self, 'polish_database.xlsx')
-        self.holidays_dates = DatabaseManager.extracting_dates(DatabaseManager(), self.holidays_full)
+        self.db_manager = db_manager
+        self.holidays_full = self.db_manager.getting_data_excel('polish_database.xlsx')
+        self.holidays_dates = self.db_manager.extracting_dates(self.holidays_full)
         self.begin_date = None
         self.end_date = None
 
@@ -35,7 +36,6 @@ class CalendarWindow(QMainWindow):
         self.holiday_highlighted_format = QTextCharFormat()
         self.holiday_highlighted_format.setBackground(QColor(255,213,128,255))
         self.holiday_highlighted_format.setForeground(QColor('black'))
-
         self.cal.clicked.connect(self.date_is_clicked)
         self.date_select.clicked.connect(self.setting_date_using_boxes)
         self.setting_current_date()
@@ -46,14 +46,27 @@ class CalendarWindow(QMainWindow):
         self.end_date_box.setDateTime(QDateTime.currentDateTime())
 
 
+    def mark_holidays_from_list(self, dates: list):
+
+        for date in self.holidays_dates:
+            self.cal.setDateTextFormat(date, QTextCharFormat())
+
+        self.holidays_dates = dates
+
+        for date in dates:
+            self.cal.setDateTextFormat(date, self.holidays_format)
+
+
+    def updating_database(self, database: list):
+        self.holidays_full = database
+
+
     def mark_holidays(self):
         for i in self.holidays_dates:
             self.cal.setDateTextFormat(i, self.holidays_format)
 
 
     def update_calendar_by_list(self):
-        self.holidays_full = DatabaseManager.getting_data_excel(self, 'polish_copy.xlsx')
-        self.holidays_dates = DatabaseManager.extracting_dates(DatabaseManager(), self.holidays_full)
         self.mark_holidays()
 
 
