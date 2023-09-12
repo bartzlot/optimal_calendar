@@ -4,17 +4,14 @@ class MainMenu(QMainWindow):
 
     def __init__(self, parent = None):
         super(MainMenu, self).__init__(parent)
-        uic.loadUi("main_menu.ui", self)
+        uic.loadUi(DatabaseManager.creating_path_to_ui_file("main_menu.ui"), self)
         self.calendar_button = self.findChild(QPushButton, "calendar_button")
         self.event_list_button = self.findChild(QPushButton, "event_list_button")
         self.options_button = self.findChild(QPushButton, "options_button")
         self.quit_button = self.findChild(QPushButton, "quit_button")
 
         self.db_manager = DatabaseManager()
-        self.db_manager.database = self.db_manager.getting_data_excel('polish_database.xlsx')
-        self.db_manager.dates_list = self.db_manager.extracting_dates(self.db_manager.database)
         self.calendar = CalendarWindow(self.db_manager)
-
         self.list = EventList(self.db_manager, self.calendar)
 
         self.event_list_button.clicked.connect(self.options_button_event)

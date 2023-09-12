@@ -1,7 +1,10 @@
 #libraries
-import typing
+import pathlib
 
 import pandas as pd
+pd.options.mode.chained_assignment = None
+
+import copy
 
 from PyQt6.QtWidgets import (QWidget, QApplication, 
                              QMainWindow, QCalendarWidget, 

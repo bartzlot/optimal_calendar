@@ -7,7 +7,7 @@ class DatabaseManager():
         self.dates_list = []
     def getting_data_excel(self, directory: str):
         # polish_database.xlsx
-        df = pd.read_excel(directory)
+        df = pd.read_excel(DatabaseManager.creating_path_to_database_file(directory))
         df['DATE'] = df['DATE'].dt.strftime('%Y-%m-%d')
 
         for i, date in enumerate(df['DATE']):
@@ -25,10 +25,14 @@ class DatabaseManager():
     def saving_data_to_excel(self, database: list, file_name: str):
         for i, date in enumerate(database):
             database[i]['DATE'] = date['DATE'].toString('yyyy/MM/dd')
+
         df = pd.DataFrame.from_dict(database)
+
+        for i, date in enumerate(database):
+            database[i]['DATE'] = QDate.fromString(date['DATE'], 'yyyy/MM/dd')
         df['DATE'] = pd.to_datetime(df['DATE'], format='%Y/%m/%d')
 
-        df.to_excel(file_name)
+        df.to_excel(DatabaseManager.creating_path_to_database_file(file_name), index=False)
 
 
     def sorting_database(self, database: list, new_record: dict):
@@ -48,5 +52,20 @@ class DatabaseManager():
     def deleting_records(self, database: list, index: int):
         del database[index]
         return database
+
+
+    def creating_path_to_database_file(filename: str):
+        file_path = pathlib.PurePath(__file__)
+        file_path = file_path.parent.parent
+        file_path = file_path.joinpath('databases', filename)
+        return str(file_path)
+
+
+    def creating_path_to_ui_file(filename: str):
+        file_path = pathlib.PurePath(__file__)
+        file_path = file_path.parent.parent
+        file_path = file_path.joinpath('ui', filename)
+        return str(file_path)
+
 db = DatabaseManager()
 

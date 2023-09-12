@@ -7,7 +7,7 @@ class CalendarWindow(QMainWindow):
 
     def __init__(self, db_manager, parent = None):
         super(CalendarWindow, self).__init__(parent)
-        uic.loadUi("window_design.ui", self)
+        uic.loadUi(DatabaseManager.creating_path_to_ui_file("window_design.ui"), self)
         self.main_widget = self.findChild(QWidget, "centralwidget")
         self.cal = self.findChild(QCalendarWidget, "calendarWidget")
         self.start_date_box = self.findChild(QDateEdit, "startingDate")
@@ -165,7 +165,7 @@ class CalendarWindow(QMainWindow):
         if date in self.holidays_dates:
             index = self.holidays_dates.index(date)
             self.day_description.setStyleSheet('color: orange')
-            self.day_description.setText(f'Holiday: {day_name} \n{self.holidays_full[index]["DAY_DESC"]}')
+            self.day_description.setText(f'{self.holidays_full[index]["TYPE"]}: {day_name} \n{self.holidays_full[index]["DAY_DESC"]}')
         
         if date not in self.holidays_dates and day_num in WORK_DAYS:
             self.day_description.setStyleSheet('color: rgb(255, 203, 204)')
