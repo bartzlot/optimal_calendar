@@ -13,7 +13,7 @@ from PyQt6.QtWidgets import (QWidget, QApplication,
                              QDialog, QTextEdit, QDialogButtonBox)
 
 from PyQt6.QtGui import (QPalette, QTextCharFormat, 
-                         QColor, QPainter,)
+                         QColor, QPainter, QCloseEvent)
 
 from PyQt6.QtCore import (Qt, QDate, QDateTime, 
                           QRect, QPoint, pyqtSlot, pyqtSignal)

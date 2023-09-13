@@ -22,7 +22,7 @@ class MainMenu(QMainWindow):
         self.list.data_added.connect(self.calendar.mark_holidays_from_list)
         self.list.data_updated.connect(self.calendar.mark_holidays_from_list)
         self.list.data_deleted.connect(self.calendar.mark_holidays_from_list)
-        
+
 
     def calendar_button_event(self):
         self.calendar.show()
@@ -32,8 +32,10 @@ class MainMenu(QMainWindow):
         self.list.show()
 
 
-    def quit_button_event(self):
+    def quit_button_event():
         QApplication.quit()
+    
+
 
 app = QApplication(sys.argv)
 window = MainMenu()

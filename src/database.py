@@ -22,17 +22,15 @@ class DatabaseManager():
             dates_data.append(i["DATE"])
         return dates_data
     
-    def saving_data_to_excel(self, database: list, file_name: str):
-        for i, date in enumerate(database):
-            database[i]['DATE'] = date['DATE'].toString('yyyy/MM/dd')
+    # def saving_data_to_excel(self, database: list, file_name: str): #TODO cousing bug with Qdate and string
+    #     # for i, date in enumerate(database):
+    #     #     database[i]['DATE'] = date['DATE'].toString('yyyy/MM/dd')
 
-        df = pd.DataFrame.from_dict(database)
+    #     df = pd.DataFrame.from_dict(database)
+        
+    #     df['DATE'] = pd.to_datetime(df['DATE'], format='%Y/%m/%d')
 
-        for i, date in enumerate(database):
-            database[i]['DATE'] = QDate.fromString(date['DATE'], 'yyyy/MM/dd')
-        df['DATE'] = pd.to_datetime(df['DATE'], format='%Y/%m/%d')
-
-        df.to_excel(DatabaseManager.creating_path_to_database_file(file_name), index=False)
+    #     df.to_excel(DatabaseManager.creating_path_to_database_file(file_name), index=False)
 
 
     def sorting_database(self, database: list, new_record: dict):
@@ -49,8 +47,9 @@ class DatabaseManager():
         return database
 
 
-    def deleting_records(self, database: list, index: int):
-        del database[index]
+    def deleting_records(self, database: list, index: set):
+        for i, x in enumerate(index):
+            del database[x-i]
         return database
 
 
@@ -67,5 +66,5 @@ class DatabaseManager():
         file_path = file_path.joinpath('ui', filename)
         return str(file_path)
 
-db = DatabaseManager()
+# db = DatabaseManager()
 

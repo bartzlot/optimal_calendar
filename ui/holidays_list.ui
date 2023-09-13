@@ -41,6 +41,20 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="multiple_add_button">
+       <property name="text">
+        <string> ADD DATE RANGE</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="edit_button">
+       <property name="text">
+        <string>EDIT</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="del_button">
        <property name="text">
         <string>DELETE</string>
@@ -53,13 +67,6 @@
        </property>
        <property name="flat">
         <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="edit_button">
-       <property name="text">
-        <string>EDIT</string>
        </property>
       </widget>
      </item>
