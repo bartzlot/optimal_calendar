@@ -67,6 +67,7 @@ class EventList(QMainWindow):
             self.updating_list()
             self.data_added.emit(self.dates_list)
             self.database_updated.emit(self.database)
+            DatabaseManager.saving_data_to_excel(DatabaseManager, self.database, 'polish_database.xlsx')
         else: pass
     
 
@@ -82,6 +83,7 @@ class EventList(QMainWindow):
             self.updating_list()
             self.data_added.emit(self.dates_list)
             self.database_updated.emit(self.database)
+            DatabaseManager.saving_data_to_excel(DatabaseManager, self.database, 'polish_database.xlsx')
         else: pass
         
 
@@ -117,6 +119,7 @@ class EventList(QMainWindow):
         self.dates_list = self.db_manager.extracting_dates(self.database)
         self.data_updated.emit(self.dates_list)
         self.database_updated.emit(self.database)
+        DatabaseManager.saving_data_to_excel(DatabaseManager, self.database, 'polish_database.xlsx')
 
     def exit_button_event(self):
         self.close()
@@ -188,13 +191,13 @@ class MultipleDateEdit(QDialog):
         if result == QDialog.DialogCode.Accepted:
             from_date = self.from_date_input.date()
             till_date = self.till_date_input.date()
+            
             while  from_date <= till_date:
                 edited_date = {'DAY_DESC': self.day_description_input.toPlainText(),
                                 'DATE': from_date,
                                 'TYPE': self.day_type_input.toPlainText()}
                 edited_dates_list.append(edited_date)
                 from_date = from_date.addDays(1)
-            print(edited_dates_list)
             return edited_dates_list
         else:
             return None

@@ -32,7 +32,7 @@ class MainMenu(QMainWindow):
         self.list.show()
 
 
-    def quit_button_event():
+    def quit_button_event(self):
         QApplication.quit()
     
 

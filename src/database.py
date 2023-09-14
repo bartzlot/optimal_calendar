@@ -5,9 +5,11 @@ class DatabaseManager():
     def __init__(self) -> None: 
         self.database = []
         self.dates_list = []
+
     def getting_data_excel(self, directory: str):
         # polish_database.xlsx
         df = pd.read_excel(DatabaseManager.creating_path_to_database_file(directory))
+
         df['DATE'] = df['DATE'].dt.strftime('%Y-%m-%d')
 
         for i, date in enumerate(df['DATE']):
@@ -22,15 +24,19 @@ class DatabaseManager():
             dates_data.append(i["DATE"])
         return dates_data
     
-    # def saving_data_to_excel(self, database: list, file_name: str): #TODO cousing bug with Qdate and string
-    #     # for i, date in enumerate(database):
-    #     #     database[i]['DATE'] = date['DATE'].toString('yyyy/MM/dd')
-
-    #     df = pd.DataFrame.from_dict(database)
+    def saving_data_to_excel(self, database: list, file_name: str):
         
-    #     df['DATE'] = pd.to_datetime(df['DATE'], format='%Y/%m/%d')
+        for date in database:
+            date['DATE'] = date['DATE'].toString('yyyy-MM-dd')
 
-    #     df.to_excel(DatabaseManager.creating_path_to_database_file(file_name), index=False)
+        df = pd.DataFrame.from_dict(database)
+        
+        df['DATE'] = pd.to_datetime(df['DATE'], format='%Y-%m-%d')
+
+        df.to_excel(DatabaseManager.creating_path_to_database_file(file_name), index=False)
+
+        for date in database:
+            date['DATE'] = QDate.fromString(date['DATE'], 'yyyy-MM-dd')
 
 
     def sorting_database(self, database: list, new_record: dict):
