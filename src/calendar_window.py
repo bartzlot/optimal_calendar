@@ -1,7 +1,6 @@
 from lib import *
 
 
-
 class CalendarWindow(QMainWindow):
 
 

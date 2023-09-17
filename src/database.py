@@ -5,6 +5,8 @@ class DatabaseManager():
     def __init__(self) -> None: 
         self.database = []
         self.dates_list = []
+        self.current_database = ''
+        self.default_marked_signature = "Holiday"
 
     def getting_data_excel(self, directory: str):
         # polish_database.xlsx
@@ -14,18 +16,21 @@ class DatabaseManager():
 
         for i, date in enumerate(df['DATE']):
             df['DATE'][i] = QDate.fromString(date, 'yyyy-MM-dd')
-        
+        self.current_database = directory
         data_dict = df.to_dict('records')
+
         return data_dict
-    
+
+
     def extracting_dates(self, data_dict: dict):
         dates_data = []
         for i in data_dict:
             dates_data.append(i["DATE"])
         return dates_data
-    
+
+
     def saving_data_to_excel(self, database: list, file_name: str):
-        
+
         for date in database:
             date['DATE'] = date['DATE'].toString('yyyy-MM-dd')
 

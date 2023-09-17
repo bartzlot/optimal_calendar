@@ -10,7 +10,8 @@ from PyQt6.QtWidgets import (QWidget, QApplication,
                              QMainWindow, QCalendarWidget, 
                              QDateEdit, QLabel, QPushButton,
                              QTableWidget, QTableWidgetItem,
-                             QDialog, QTextEdit, QDialogButtonBox)
+                             QDialog, QTextEdit, QDialogButtonBox,
+                             QFileDialog)
 
 from PyQt6.QtGui import (QPalette, QTextCharFormat, 
                          QColor, QPainter, QCloseEvent)
@@ -24,6 +25,7 @@ import sys
 #imports from different files
 
 from database import DatabaseManager
+from options_window import OptionsWindow
 from calendar_window import CalendarWindow
 from event_list_window import EventList
 from main_menu import MainMenu
