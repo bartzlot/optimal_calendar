@@ -1,10 +1,13 @@
-import typing
-from PyQt6 import QtCore
-from PyQt6.QtWidgets import QWidget
 from lib import *
 
 
 class OptionsWindow(QMainWindow):
+
+    calendar_update = pyqtSignal(list)
+    holidays_changed = pyqtSignal(list)
+    list_update = pyqtSignal(list)
+
+
     def __init__(self, db_manager, parent = None):
         super(OptionsWindow, self).__init__(parent)
         uic.loadUi(DatabaseManager.creating_path_to_ui_file("settings.ui"), self)
@@ -22,6 +25,9 @@ class OptionsWindow(QMainWindow):
         self.updating_default_signature()
         self.updating_database_info(self.db_manager.current_database)
         self.change_database_button.clicked.connect(self.change_database_button_event)
+        
+        self.exit_button.clicked.connect(self.exit_button_event)
+
 
     def updating_default_signature(self):
         self.marked_days_default_signature.setText(self.db_manager.default_marked_signature)
@@ -31,7 +37,7 @@ class OptionsWindow(QMainWindow):
         self.database_info_label.setText(database_name)
 
 
-    def change_database_button_event(self): #TOCONTINUE
+    def change_database_button_event(self): 
         starting_dir = pathlib.PurePath(__file__)
         starting_dir = starting_dir.parent.parent
         starting_dir = starting_dir.joinpath('databases')
@@ -42,4 +48,29 @@ class OptionsWindow(QMainWindow):
             self.db_manager.current_database = file_name
             self.updating_database_info(file_name)
 
-            return file_name
+            self.getting_new_database_data(file_name)
+    
+
+    def getting_new_database_data(self, file_name: str):
+        self.db_manager.database = DatabaseManager.getting_data_excel(DatabaseManager, file_name)
+        env_file_path = DatabaseManager.creating_path_to_env_file()
+        set_key(env_file_path, "DEFAULT_DATABASE", file_name)
+        new_dates = self.db_manager.extracting_dates(self.db_manager.database)
+
+        self.calendar_update.emit(self.db_manager.database)
+        self.list_update.emit(self.db_manager.database)
+        self.holidays_changed.emit(new_dates)
+
+
+    def defaults_button_event(self):#TODO
+        pass
+
+
+    def save_button_event(self):#TODO
+        pass
+
+
+    def exit_button_event(self):
+        self.close()
+
+

@@ -7,6 +7,8 @@ class DatabaseManager():
         self.dates_list = []
         self.current_database = ''
         self.default_marked_signature = "Holiday"
+        load_dotenv()
+        self.LAST_DB= os.getenv('DEFAULT_DATABASE')
 
     def getting_data_excel(self, directory: str):
         # polish_database.xlsx
@@ -77,5 +79,11 @@ class DatabaseManager():
         file_path = file_path.joinpath('ui', filename)
         return str(file_path)
 
+
+    def creating_path_to_env_file():
+        file_path = pathlib.PurePath(__file__)
+        file_path = file_path.parent
+        file_path = file_path.joinpath('.env')
+        return str(file_path)
 # db = DatabaseManager()
 

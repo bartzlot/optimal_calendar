@@ -6,6 +6,8 @@ pd.options.mode.chained_assignment = None
 
 import copy
 
+from dotenv import set_key, load_dotenv
+
 from PyQt6.QtWidgets import (QWidget, QApplication, 
                              QMainWindow, QCalendarWidget, 
                              QDateEdit, QLabel, QPushButton,
@@ -21,6 +23,8 @@ from PyQt6.QtCore import (Qt, QDate, QDateTime,
 from PyQt6 import uic
 
 import sys
+
+import os
 
 #imports from different files
 

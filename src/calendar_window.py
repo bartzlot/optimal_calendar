@@ -19,7 +19,7 @@ class CalendarWindow(QMainWindow):
         self.days_selected_num = self.findChild(QLabel, "DaysSelectedNumber")
         self.day_description = self.findChild(QLabel, "day_desc")
         self.db_manager = db_manager
-        self.holidays_full = self.db_manager.getting_data_excel('polish_database.xlsx')
+        self.holidays_full = self.db_manager.getting_data_excel(self.db_manager.LAST_DB)
         self.holidays_dates = self.db_manager.extracting_dates(self.holidays_full)
         self.begin_date = None
         self.end_date = None

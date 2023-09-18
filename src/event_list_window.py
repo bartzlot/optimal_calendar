@@ -2,10 +2,13 @@ from PyQt6 import QtGui
 from lib import *
 
 class EventList(QMainWindow):
+
     data_added = pyqtSignal(list)
     data_updated = pyqtSignal(list)
     data_deleted = pyqtSignal(list)
     database_updated = pyqtSignal(list)
+
+
     def __init__(self, db_manager, calendar, parent = None):
         super(EventList, self).__init__(parent)
         uic.loadUi(DatabaseManager.creating_path_to_ui_file("holidays_list.ui"), self)
@@ -17,7 +20,7 @@ class EventList(QMainWindow):
         self.exit_button = self.findChild(QPushButton, "exit_button")
         self.holidays_list = self.findChild(QTableWidget, "holidays_list")
         self.db_manager = db_manager
-        self.database = db_manager.getting_data_excel('polish_database.xlsx')
+        self.database = db_manager.getting_data_excel(self.db_manager.LAST_DB)
         self.calendar_window_instance = calendar
 
         self.creating_table()
@@ -47,6 +50,11 @@ class EventList(QMainWindow):
             self.holidays_list.setItem(index, 0, QTableWidgetItem(records['DAY_DESC']))
             self.holidays_list.setItem(index, 1, QTableWidgetItem(temp_date_in_str))
             self.holidays_list.setItem(index, 2, QTableWidgetItem(records['TYPE']))
+
+
+    def updating_list_by_changing_db(self, new_db: list):
+        self.database = new_db
+        self.updating_list()
 
 
     def updating_list(self):
@@ -108,6 +116,7 @@ class EventList(QMainWindow):
         self.database_updated.emit(self.database)
         DatabaseManager.saving_data_to_excel(DatabaseManager, self.database, 'polish_database.xlsx')
 
+
     def delete_button_event(self):
         selected_rows = set()
         selected_items = self.holidays_list.selectedItems()
@@ -120,6 +129,7 @@ class EventList(QMainWindow):
         self.data_updated.emit(self.dates_list)
         self.database_updated.emit(self.database)
         DatabaseManager.saving_data_to_excel(DatabaseManager, self.database, 'polish_database.xlsx')
+
 
     def exit_button_event(self):
         self.close()
