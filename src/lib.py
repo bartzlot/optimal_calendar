@@ -13,7 +13,7 @@ from PyQt6.QtWidgets import (QWidget, QApplication,
                              QDateEdit, QLabel, QPushButton,
                              QTableWidget, QTableWidgetItem,
                              QDialog, QTextEdit, QDialogButtonBox,
-                             QFileDialog)
+                             QFileDialog, QCheckBox, QComboBox)
 
 from PyQt6.QtGui import (QPalette, QTextCharFormat, 
                          QColor, QPainter, QCloseEvent)
@@ -30,6 +30,7 @@ import os
 
 from database import DatabaseManager
 from options_window import OptionsWindow
+from meeting_optimizer import MeetingCalculator
 from calendar_window import CalendarWindow
 from event_list_window import EventList
 from main_menu import MainMenu

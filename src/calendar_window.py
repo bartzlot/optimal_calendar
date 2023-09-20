@@ -6,13 +6,14 @@ class CalendarWindow(QMainWindow):
 
     def __init__(self, db_manager, parent = None):
         super(CalendarWindow, self).__init__(parent)
-        uic.loadUi(DatabaseManager.creating_path_to_ui_file("window_design.ui"), self)
+        uic.loadUi(DatabaseManager.creating_path_to_ui_file("calendar.ui"), self)
         self.main_widget = self.findChild(QWidget, "centralwidget")
         self.cal = self.findChild(QCalendarWidget, "calendarWidget")
         self.start_date_box = self.findChild(QDateEdit, "startingDate")
         self.end_date_box = self.findChild(QDateEdit, "endingDate")
         self.lost_days_num = self.findChild(QLabel, "numberLostDays")
         self.date_select = self.findChild(QPushButton, "date_select_button")
+        self.calculate_work_button = self.findChild(QPushButton, "calculate_workflow_button")
         self.work_days_label = self.findChild(QLabel, "working_days_label")
         self.work_days_num = self.findChild(QLabel, "numberWorkDays")
         self.days_selected = self.findChild(QLabel, "days_selected_label")
@@ -35,8 +36,11 @@ class CalendarWindow(QMainWindow):
         self.holiday_highlighted_format = QTextCharFormat()
         self.holiday_highlighted_format.setBackground(QColor(255,213,128,255))
         self.holiday_highlighted_format.setForeground(QColor('black'))
+
         self.cal.clicked.connect(self.date_is_clicked)
         self.date_select.clicked.connect(self.setting_date_using_boxes)
+        self.calculate_work_button.clicked.connect(self.calculate_workflow_button_event)
+
         self.setting_current_date()
         self.mark_holidays()
         
@@ -140,7 +144,6 @@ class CalendarWindow(QMainWindow):
         
 
     def date_is_clicked(self, date_val):
-        # reset highlighting of previously selected date range
         self.updating_counting_labels(0, 0, 0)
         self.mark_holidays()
         self.format_range(QTextCharFormat())
@@ -173,6 +176,17 @@ class CalendarWindow(QMainWindow):
         if date not in self.holidays_dates and day_num not in WORK_DAYS:
             self.day_description.setStyleSheet('color: rgb(255, 233, 204)')            
             self.day_description.setText(f'Weekend: {day_name}')
+
+
+    def calculate_workflow_button_event(self):
+        calculate_workflow = MeetingCalculator(self, self.begin_date, self.end_date, self.holidays_dates)
+        calculate_workflow.show()
+    
+
+    
+
+
+
 
 
 
