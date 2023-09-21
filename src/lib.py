@@ -30,7 +30,7 @@ import os
 
 from database import DatabaseManager
 from options_window import OptionsWindow
-from meeting_optimizer import MeetingCalculator
+from meeting_optimizer import MeetingCalculator, MeetingOptimizer
 from calendar_window import CalendarWindow
 from event_list_window import EventList
 from main_menu import MainMenu
