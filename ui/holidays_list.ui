@@ -6,21 +6,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
-    <height>600</height>
+    <width>816</width>
+    <height>591</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Event List</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #8BC6E2;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>620</x>
+      <x>630</x>
       <y>0</y>
       <width>181</width>
-      <height>251</height>
+      <height>561</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="action_buttons_layout">
@@ -35,6 +40,20 @@
      </property>
      <item>
       <widget class="QPushButton" name="add_button">
+       <property name="styleSheet">
+        <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
+       </property>
        <property name="text">
         <string>ADD</string>
        </property>
@@ -42,6 +61,20 @@
      </item>
      <item>
       <widget class="QPushButton" name="multiple_add_button">
+       <property name="styleSheet">
+        <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
+       </property>
        <property name="text">
         <string> ADD DATE RANGE</string>
        </property>
@@ -49,6 +82,20 @@
      </item>
      <item>
       <widget class="QPushButton" name="edit_button">
+       <property name="styleSheet">
+        <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
+       </property>
        <property name="text">
         <string>EDIT</string>
        </property>
@@ -56,6 +103,20 @@
      </item>
      <item>
       <widget class="QPushButton" name="del_button">
+       <property name="styleSheet">
+        <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
+       </property>
        <property name="text">
         <string>DELETE</string>
        </property>
@@ -72,6 +133,20 @@
      </item>
      <item>
       <widget class="QPushButton" name="exit_button">
+       <property name="styleSheet">
+        <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
+       </property>
        <property name="text">
         <string>EXIT</string>
        </property>
@@ -82,11 +157,83 @@
    <widget class="QTableWidget" name="holidays_list">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>0</y>
       <width>610</width>
       <height>561</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget {
+    background-color: #92b9d0; /* Background color for the entire table */
+    color: white; /* Text color for items */
+    border: 1px solid black; /* Black border */
+}
+
+/* Style for row headers (indexes) */
+QTableWidget::item:row {
+    background-color: #5c7d8a; /* Background color for row headers (indexes) */
+    color: white; /* Text color for row headers (indexes) */
+    padding: 5px; /* Adjust the padding for table items */
+}
+
+/* Style for column headers (titles) */
+QHeaderView {
+    background-color: #5c7d8a; /* Background color for column headers (titles) */
+    color: white; /* Text color for column headers */
+    border: 1px solid black; /* Black border for headers */
+    font-weight: bold; /* Make headers bold */
+}
+
+/* Style for selected items */
+QTableWidget::item:selected {
+    background-color: #47626b; /* Background color for selected items */
+    color: white; /* Text color for selected items */
+}
+
+/* Style for the scrollbar */
+QScrollBar:vertical {
+    background-color: #5c7d8a; /* Background color for the vertical scrollbar */
+    width: 6px; /* Slimmer width of the scrollbar */
+}
+
+QScrollBar::handle:vertical {
+    background-color: #668B99; /* Color of the scrollbar handle */
+    border-radius: 3px; /* Rounded corners for the slimmer handle */
+    min-height: 30px; /* Adjust the handle's minimum height */
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    background: none; /* No background for the scroll buttons */
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: none; /* No background for the scroll bar's pages */
+}
+
+QScrollBar:horizontal {
+    background-color: #5c7d8a; /* Background color for the horizontal scrollbar */
+    height: 6px; /* Slimmer height of the scrollbar */
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #668B99; /* Color of the scrollbar handle */
+    border-radius: 3px; /* Rounded corners for the slimmer handle */
+    min-width: 30px; /* Adjust the handle's minimum width */
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    background: none; /* No background for the scroll buttons */
+}
+
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background: none; /* No background for the scroll bar's pages */
+}
+</string>
     </property>
     <property name="editTriggers">
      <set>QAbstractItemView::NoEditTriggers</set>
@@ -110,7 +257,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>811</width>
+     <width>816</width>
      <height>21</height>
     </rect>
    </property>

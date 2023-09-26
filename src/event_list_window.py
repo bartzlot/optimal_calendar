@@ -120,15 +120,20 @@ class EventList(QMainWindow):
     def delete_button_event(self):
         selected_rows = set()
         selected_items = self.holidays_list.selectedItems()
+        deleting_confirmation = DeletingConfirm(self)
+        deleting_status = deleting_confirmation.getting_deleting_status()
+        if deleting_status is True:
 
-        for item in selected_items:
-            selected_rows.add(item.row())
-        self.database = self.db_manager.deleting_records(self.database, selected_rows)
-        self.updating_list()
-        self.dates_list = self.db_manager.extracting_dates(self.database)
-        self.data_updated.emit(self.dates_list)
-        self.database_updated.emit(self.database)
-        DatabaseManager.saving_data_to_excel(DatabaseManager, self.database, 'polish_database.xlsx')
+            for item in selected_items:
+                selected_rows.add(item.row())
+            self.database = self.db_manager.deleting_records(self.database, selected_rows)
+            self.updating_list()
+            self.dates_list = self.db_manager.extracting_dates(self.database)
+            self.data_updated.emit(self.dates_list)
+            self.database_updated.emit(self.database)
+            DatabaseManager.saving_data_to_excel(DatabaseManager, self.database, 'polish_database.xlsx')
+
+        else: pass
 
 
     def exit_button_event(self):
@@ -213,9 +218,32 @@ class MultipleDateEdit(QDialog):
             return None
 
 
-# app = QApplication(sys.argv)
-# window = DateEdit()
-# window.show()
-# sys.exit(app.exec())    
+class DeletingConfirm(QDialog):
+
+
+    def __init__(self, parent = EventList):
+        super(DeletingConfirm, self).__init__(parent)
+        uic.loadUi(DatabaseManager.creating_path_to_ui_file("delete_confirmation.ui"), self)
+
+        self.dialog_options = self.findChild(QDialogButtonBox, "dialog_yes_no")
+    
+        self.dialog_options.accepted.connect(self.accept)
+        self.dialog_options.rejected.connect(self.reject)
+
+
+    def getting_deleting_status(self):
+
+        result = self.exec()
+
+        if result == QDialog.DialogCode.Accepted:
+
+            return True
+        
+        else:
+
+            return False
+
+
+
 
 

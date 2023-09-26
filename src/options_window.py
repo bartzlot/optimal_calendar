@@ -52,14 +52,32 @@ class OptionsWindow(QMainWindow):
     
 
     def getting_new_database_data(self, file_name: str):
-        self.db_manager.database = DatabaseManager.getting_data_excel(DatabaseManager, file_name)
         env_file_path = DatabaseManager.creating_path_to_env_file()
-        set_key(env_file_path, "DEFAULT_DATABASE", file_name)
-        new_dates = self.db_manager.extracting_dates(self.db_manager.database)
+        try:
+            
+            self.db_manager.database = DatabaseManager.getting_data_excel(DatabaseManager, file_name)
+            set_key(env_file_path, "DEFAULT_DATABASE", file_name)
+            new_dates = self.db_manager.extracting_dates(self.db_manager.database)
 
-        self.calendar_update.emit(self.db_manager.database)
-        self.list_update.emit(self.db_manager.database)
-        self.holidays_changed.emit(new_dates)
+            self.calendar_update.emit(self.db_manager.database)
+            self.list_update.emit(self.db_manager.database)
+            self.holidays_changed.emit(new_dates)
+
+        except FileNotFoundError as fnf:
+
+            file_err = Errorhandler()
+            file_err.error_handler(fnf)
+            file_err.exec()
+            set_key(env_file_path, "DEFAULT_DATABASE", self.db_manager.LAST_DB)
+            self.updating_database_info(self.db_manager.LAST_DB)
+
+        except Exception:
+
+            file_err = Errorhandler()
+            file_err.error_handler("Wrong file data format or database empty...\n Switching to first opened database")
+            file_err.exec()
+            set_key(env_file_path, "DEFAULT_DATABASE", self.db_manager.LAST_DB)
+            self.updating_database_info(self.db_manager.LAST_DB)
 
 
     def defaults_button_event(self):#TODO

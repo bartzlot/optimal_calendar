@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QDateEdit" name="startingDate">
     <property name="geometry">
@@ -206,6 +210,9 @@
       <italic>false</italic>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="gridVisible">
      <bool>true</bool>
     </property>
@@ -248,7 +255,7 @@
      <rect>
       <x>10</x>
       <y>190</y>
-      <width>91</width>
+      <width>81</width>
       <height>51</height>
      </rect>
     </property>

@@ -26,7 +26,7 @@ class CalendarWindow(QMainWindow):
         self.db_manager = db_manager
         self.holidays_full = self.db_manager.getting_data_excel(self.db_manager.LAST_DB)
         self.holidays_dates = self.db_manager.extracting_dates(self.holidays_full)
-
+            
         self.begin_date = None
         self.end_date = None
 
@@ -71,6 +71,7 @@ class CalendarWindow(QMainWindow):
 
 
     def mark_holidays(self):
+        
         for i in self.holidays_dates:
             self.cal.setDateTextFormat(i, self.holidays_format)
 

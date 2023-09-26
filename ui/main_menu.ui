@@ -13,6 +13,11 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #8BC6E2;
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -47,8 +52,23 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>30</pointsize>
+      <family>Arial Narrow</family>
+      <pointsize>-1</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 40px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
     </property>
     <property name="text">
      <string>Calendar</string>
@@ -65,8 +85,23 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>30</pointsize>
+      <family>Arial Narrow</family>
+      <pointsize>-1</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 40px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
     </property>
     <property name="text">
      <string>Options</string>
@@ -83,8 +118,23 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>30</pointsize>
+      <family>Arial Narrow</family>
+      <pointsize>-1</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 40px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
     </property>
     <property name="text">
      <string>Quit</string>
@@ -101,8 +151,23 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>30</pointsize>
+      <family>Arial Narrow</family>
+      <pointsize>-1</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 40px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
     </property>
     <property name="text">
      <string>Event list</string>

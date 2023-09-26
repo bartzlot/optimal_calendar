@@ -1,5 +1,4 @@
 from lib import *
-
 class DatabaseManager():
 
     def __init__(self) -> None: 
@@ -11,7 +10,7 @@ class DatabaseManager():
         self.LAST_DB= os.getenv('DEFAULT_DATABASE')
 
     def getting_data_excel(self, directory: str):
-        # polish_database.xlsx
+        
         df = pd.read_excel(DatabaseManager.creating_path_to_database_file(directory))
 
         df['DATE'] = df['DATE'].dt.strftime('%Y-%m-%d')
@@ -85,5 +84,25 @@ class DatabaseManager():
         file_path = file_path.parent
         file_path = file_path.joinpath('.env')
         return str(file_path)
-# db = DatabaseManager()
+
+
+class Errorhandler(QDialog):
+
+
+    def __init__(self, parent = None):
+        super(Errorhandler, self).__init__(parent)
+        uic.loadUi(DatabaseManager.creating_path_to_ui_file('error_dialog.ui'), self)
+
+        self.error_text_label = self.findChild(QLabel, "error_text_label")
+        self.ok_button = self.findChild(QPushButton, "ok_button")
+
+
+        self.ok_button.clicked.connect(self.ok_button_event)
+
+    def error_handler(self, error_mess):
+        self.error_text_label.setText(str(error_mess))
+        self.show()
+
+    def ok_button_event(self):
+        self.close()
 

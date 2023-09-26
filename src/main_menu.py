@@ -9,7 +9,7 @@ class MainMenu(QMainWindow):
         self.event_list_button = self.findChild(QPushButton, "event_list_button")
         self.options_button = self.findChild(QPushButton, "options_button")
         self.quit_button = self.findChild(QPushButton, "quit_button")
-
+        
         self.db_manager = DatabaseManager()
         self.calendar = CalendarWindow(self.db_manager)
         self.list = EventList(self.db_manager, self.calendar)

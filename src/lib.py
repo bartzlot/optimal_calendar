@@ -19,7 +19,7 @@ from PyQt6.QtGui import (QPalette, QTextCharFormat,
                          QColor, QPainter, QCloseEvent)
 
 from PyQt6.QtCore import (Qt, QDate, QDateTime, 
-                          QRect, QPoint, pyqtSlot, pyqtSignal)
+                          QRect, QPoint, pyqtSignal)
 from PyQt6 import uic
 
 import sys
@@ -27,8 +27,7 @@ import sys
 import os
 
 #imports from different files
-
-from database import DatabaseManager
+from database import DatabaseManager, Errorhandler
 from options_window import OptionsWindow
 from meeting_optimizer import MeetingCalculator, MeetingOptimizer
 from calendar_window import CalendarWindow
