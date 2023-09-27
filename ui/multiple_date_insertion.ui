@@ -7,20 +7,39 @@
     <x>0</x>
     <y>0</y>
     <width>366</width>
-    <height>214</height>
+    <height>238</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Multiple date insertion</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #8BC6E2;
+}</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>180</x>
      <y>180</y>
-     <width>161</width>
-     <height>32</height>
+     <width>171</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 15px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -40,9 +59,18 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <family>Arial</family>
+     <pointsize>-1</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}</string>
    </property>
    <property name="text">
     <string>Day description:</string>
@@ -57,6 +85,11 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QTextEdit {
+    color: black;
+}</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
@@ -69,9 +102,18 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <family>Arial</family>
+     <pointsize>-1</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}</string>
    </property>
    <property name="text">
     <string>From:</string>
@@ -91,6 +133,12 @@
      <pointsize>16</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QDateEdit{
+	background-color:orange;
+	color:black;
+}</string>
+   </property>
    <property name="calendarPopup">
     <bool>true</bool>
    </property>
@@ -106,9 +154,18 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <family>Arial</family>
+     <pointsize>-1</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}</string>
    </property>
    <property name="text">
     <string>Day type:</string>
@@ -123,6 +180,11 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QTextEdit {
+    color: black;
+}</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
@@ -135,9 +197,18 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <family>Arial</family>
+     <pointsize>-1</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}</string>
    </property>
    <property name="text">
     <string>Till:</string>
@@ -156,6 +227,12 @@
     <font>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QDateEdit{
+	background-color:orange;
+	color:black;
+}</string>
    </property>
    <property name="calendarPopup">
     <bool>true</bool>

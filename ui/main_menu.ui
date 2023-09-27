@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>481</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Optimal Calendar</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget {
@@ -19,45 +19,72 @@
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>0</x>
       <y>0</y>
-      <width>741</width>
-      <height>111</height>
+      <width>495</width>
+      <height>601</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>50</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Optimal Calendar</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="calendar_button">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>120</y>
-      <width>251</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Narrow</family>
-      <pointsize>-1</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">    QPushButton {
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="leftMargin">
+      <number>40</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>40</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>120</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+}</string>
+       </property>
+       <property name="text">
+        <string>Optimal Calendar</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="calendar_button">
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial Narrow</family>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">    QPushButton {
         background-color: orange;
         color: black;
         border-radius: 15px;
@@ -69,28 +96,28 @@
     QPushButton:pressed {
         background-color: darkorange; /* Change color when button is pressed */
     }</string>
-    </property>
-    <property name="text">
-     <string>Calendar</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="options_button">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>320</y>
-      <width>251</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Narrow</family>
-      <pointsize>-1</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">    QPushButton {
+       </property>
+       <property name="text">
+        <string>Calendar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="event_list_button">
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial Narrow</family>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">    QPushButton {
         background-color: orange;
         color: black;
         border-radius: 15px;
@@ -102,28 +129,28 @@
     QPushButton:pressed {
         background-color: darkorange; /* Change color when button is pressed */
     }</string>
-    </property>
-    <property name="text">
-     <string>Options</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="quit_button">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>430</y>
-      <width>251</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Narrow</family>
-      <pointsize>-1</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">    QPushButton {
+       </property>
+       <property name="text">
+        <string>Event list</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="options_button">
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial Narrow</family>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">    QPushButton {
         background-color: orange;
         color: black;
         border-radius: 15px;
@@ -135,28 +162,28 @@
     QPushButton:pressed {
         background-color: darkorange; /* Change color when button is pressed */
     }</string>
-    </property>
-    <property name="text">
-     <string>Quit</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="event_list_button">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>220</y>
-      <width>251</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Narrow</family>
-      <pointsize>-1</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">    QPushButton {
+       </property>
+       <property name="text">
+        <string>Options</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="quit_button">
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial Narrow</family>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">    QPushButton {
         background-color: orange;
         color: black;
         border-radius: 15px;
@@ -168,23 +195,15 @@
     QPushButton:pressed {
         background-color: darkorange; /* Change color when button is pressed */
     }</string>
-    </property>
-    <property name="text">
-     <string>Event list</string>
-    </property>
+       </property>
+       <property name="text">
+        <string>Quit</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

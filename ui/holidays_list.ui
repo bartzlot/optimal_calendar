@@ -22,10 +22,10 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>0</y>
-      <width>181</width>
-      <height>561</height>
+      <x>640</x>
+      <y>30</y>
+      <width>161</width>
+      <height>511</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="action_buttons_layout">
@@ -40,6 +40,12 @@
      </property>
      <item>
       <widget class="QPushButton" name="add_button">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="styleSheet">
         <string notr="true">    QPushButton {
         background-color: orange;
@@ -61,6 +67,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="multiple_add_button">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="styleSheet">
         <string notr="true">    QPushButton {
         background-color: orange;
@@ -82,6 +94,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="edit_button">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="styleSheet">
         <string notr="true">    QPushButton {
         background-color: orange;
@@ -103,6 +121,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="del_button">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="styleSheet">
         <string notr="true">    QPushButton {
         background-color: orange;
@@ -133,6 +157,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="exit_button">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="styleSheet">
         <string notr="true">    QPushButton {
         background-color: orange;
@@ -158,7 +188,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>0</y>
+      <y>10</y>
       <width>610</width>
       <height>561</height>
      </rect>
@@ -252,17 +282,6 @@ QScrollBar::sub-page:horizontal {
     </attribute>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>816</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

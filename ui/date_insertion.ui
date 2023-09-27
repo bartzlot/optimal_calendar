@@ -6,21 +6,46 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>366</width>
-    <height>214</height>
+    <width>365</width>
+    <height>231</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Date insertion</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #8BC6E2;
+}</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>180</y>
+     <y>170</y>
      <width>161</width>
-     <height>32</height>
+     <height>61</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QButtonBox {
+    background-color: #f0f0f0; /* Set the background color for the entire box */
+    border: 1px solid #ccc; /* Set a border for the entire box */
+    padding: 10px; /* Set padding for the entire box */
+}
+
+/* Style the individual QPushButton elements inside the QButtonBox */
+QPushButton {
+    background-color: orange; /* Set button background color */
+    color: black; /* Set button text color */
+    border-radius: 15px; /* Set button border radius */
+    padding: 10px 20px; /* Set button padding */
+    font-size: 16px; /* Set button font size */
+    font-family: &quot;Arial Narrow&quot;, sans-serif; /* Set button font family */
+}
+QPushButton:pressed {
+    background-color: darkorange; /* Change color when button is pressed */
+}</string>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -33,16 +58,25 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>110</y>
-     <width>151</width>
-     <height>21</height>
+     <y>100</y>
+     <width>191</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <family>Arial</family>
+     <pointsize>-1</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}</string>
    </property>
    <property name="text">
     <string>Day description:</string>
@@ -57,21 +91,35 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QTextEdit {
+    color: black;
+}</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>141</width>
+     <width>61</width>
      <height>21</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <family>Arial</family>
+     <pointsize>-1</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}</string>
    </property>
    <property name="text">
     <string>Date:</string>
@@ -80,7 +128,7 @@
   <widget class="QDateEdit" name="dateEdit">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>80</x>
      <y>10</y>
      <width>131</width>
      <height>21</height>
@@ -91,6 +139,12 @@
      <pointsize>16</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QDateEdit{
+	background-color:orange;
+	color:black;
+}</string>
+   </property>
    <property name="calendarPopup">
     <bool>true</bool>
    </property>
@@ -99,16 +153,25 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>40</y>
+     <y>30</y>
      <width>151</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <family>Arial</family>
+     <pointsize>-1</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}</string>
    </property>
    <property name="text">
     <string>Day type:</string>
@@ -122,6 +185,11 @@
      <width>341</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTextEdit {
+    color: black;
+}</string>
    </property>
   </widget>
  </widget>

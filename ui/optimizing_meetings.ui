@@ -6,12 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>570</width>
-    <height>326</height>
+    <width>593</width>
+    <height>305</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Meeting optimizer</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #8BC6E2;
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -19,19 +25,33 @@
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>141</width>
-      <height>271</height>
+      <width>158</width>
+      <height>261</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QLabel" name="label">
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>75</height>
+        </size>
+       </property>
        <property name="font">
         <font>
-         <family>Arial Narrow</family>
-         <pointsize>20</pointsize>
+         <family>Arial</family>
+         <pointsize>-1</pointsize>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+}</string>
        </property>
        <property name="text">
         <string>Day to exclude</string>
@@ -39,93 +59,250 @@
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
-     <item alignment="Qt::AlignHCenter">
+     <item>
       <widget class="QCheckBox" name="monday_check">
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>20</pointsize>
+         <pointsize>-1</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox {
+    font-family: &quot;Arial Narrow&quot;, sans-serif;
+    font-size: 20px;
+    color: black;
+}
+
+QCheckBox::indicator {
+    border: 2px solid black; /* Check frame color */
+    border-radius: 5px; /* Check frame border radius */
+    width: 10px; /* Check frame width */
+    height: 10px; /* Check frame height */
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: transparent; /* Unchecked background */
+}
+
+QCheckBox::indicator:checked {
+    background-color: orange; /* Checked background */
+}</string>
        </property>
        <property name="text">
         <string>Monday</string>
        </property>
       </widget>
      </item>
-     <item alignment="Qt::AlignHCenter">
+     <item>
       <widget class="QCheckBox" name="tuesday_check">
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>20</pointsize>
+         <pointsize>-1</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox {
+    font-family: &quot;Arial Narrow&quot;, sans-serif;
+    font-size: 20px;
+    color: black;
+}
+
+QCheckBox::indicator {
+    border: 2px solid black; /* Check frame color */
+    border-radius: 5px; /* Check frame border radius */
+    width: 10px; /* Check frame width */
+    height: 10px; /* Check frame height */
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: transparent; /* Unchecked background */
+}
+
+QCheckBox::indicator:checked {
+    background-color: orange; /* Checked background */
+}</string>
        </property>
        <property name="text">
         <string>Tuesday</string>
        </property>
       </widget>
      </item>
-     <item alignment="Qt::AlignHCenter">
+     <item>
       <widget class="QCheckBox" name="wednesday_check">
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>20</pointsize>
+         <pointsize>-1</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox {
+    font-family: &quot;Arial Narrow&quot;, sans-serif;
+    font-size: 20px;
+    color: black;
+}
+
+QCheckBox::indicator {
+    border: 2px solid black; /* Check frame color */
+    border-radius: 5px; /* Check frame border radius */
+    width: 10px; /* Check frame width */
+    height: 10px; /* Check frame height */
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: transparent; /* Unchecked background */
+}
+
+QCheckBox::indicator:checked {
+    background-color: orange; /* Checked background */
+}</string>
        </property>
        <property name="text">
         <string>Wednesday</string>
        </property>
       </widget>
      </item>
-     <item alignment="Qt::AlignHCenter">
+     <item>
       <widget class="QCheckBox" name="thursday_check">
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>20</pointsize>
+         <pointsize>-1</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox {
+    font-family: &quot;Arial Narrow&quot;, sans-serif;
+    font-size: 20px;
+    color: black;
+}
+
+QCheckBox::indicator {
+    border: 2px solid black; /* Check frame color */
+    border-radius: 5px; /* Check frame border radius */
+    width: 10px; /* Check frame width */
+    height: 10px; /* Check frame height */
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: transparent; /* Unchecked background */
+}
+
+QCheckBox::indicator:checked {
+    background-color: orange; /* Checked background */
+}</string>
        </property>
        <property name="text">
         <string>Thursday</string>
        </property>
       </widget>
      </item>
-     <item alignment="Qt::AlignHCenter">
+     <item>
       <widget class="QCheckBox" name="friday_check">
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>20</pointsize>
+         <pointsize>-1</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox {
+    font-family: &quot;Arial Narrow&quot;, sans-serif;
+    font-size: 20px;
+    color: black;
+}
+
+QCheckBox::indicator {
+    border: 2px solid black; /* Check frame color */
+    border-radius: 5px; /* Check frame border radius */
+    width: 10px; /* Check frame width */
+    height: 10px; /* Check frame height */
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: transparent; /* Unchecked background */
+}
+
+QCheckBox::indicator:checked {
+    background-color: orange; /* Checked background */
+}</string>
        </property>
        <property name="text">
         <string>Friday</string>
        </property>
       </widget>
      </item>
-     <item alignment="Qt::AlignHCenter">
+     <item>
       <widget class="QCheckBox" name="saturday_check">
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>20</pointsize>
+         <pointsize>-1</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox {
+    font-family: &quot;Arial Narrow&quot;, sans-serif;
+    font-size: 20px;
+    color: black;
+}
+
+QCheckBox::indicator {
+    border: 2px solid black; /* Check frame color */
+    border-radius: 5px; /* Check frame border radius */
+    width: 10px; /* Check frame width */
+    height: 10px; /* Check frame height */
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: transparent; /* Unchecked background */
+}
+
+QCheckBox::indicator:checked {
+    background-color: orange; /* Checked background */
+}</string>
        </property>
        <property name="text">
         <string>Saturday</string>
        </property>
       </widget>
      </item>
-     <item alignment="Qt::AlignHCenter">
+     <item>
       <widget class="QCheckBox" name="sunday_check">
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>20</pointsize>
+         <pointsize>-1</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox {
+    font-family: &quot;Arial Narrow&quot;, sans-serif;
+    font-size: 20px;
+    color: black;
+}
+
+QCheckBox::indicator {
+    border: 2px solid black; /* Check frame color */
+    border-radius: 5px; /* Check frame border radius */
+    width: 10px; /* Check frame width */
+    height: 10px; /* Check frame height */
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: transparent; /* Unchecked background */
+}
+
+QCheckBox::indicator:checked {
+    background-color: orange; /* Checked background */
+}</string>
        </property>
        <property name="text">
         <string>Sunday</string>
@@ -137,9 +314,9 @@
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>180</x>
       <y>0</y>
-      <width>211</width>
+      <width>201</width>
       <height>111</height>
      </rect>
     </property>
@@ -148,10 +325,18 @@
       <widget class="QLabel" name="label_2">
        <property name="font">
         <font>
-         <family>Arial Narrow</family>
-         <pointsize>20</pointsize>
+         <family>Arial</family>
+         <pointsize>-1</pointsize>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}</string>
        </property>
        <property name="text">
         <string>Interval between meetings</string>
@@ -159,10 +344,37 @@
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QComboBox" name="interval_checkbox">
+       <property name="styleSheet">
+        <string notr="true">QComboBox {
+    border: 2px solid orange;
+    border-radius: 15px; /* Adjust the radius as needed */
+    padding: 5px;
+    background-color: orange;
+    color: black;
+    selection-background-color: #FFA500; /* Highlight color when an item is selected */
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px; /* Adjust the width as needed */
+    /* No custom styling for the dropdown arrow here */
+}
+
+QComboBox QAbstractItemView {
+    border: 2px solid orange;
+    border-radius: 15px; /* Adjust the radius as needed */
+    background-color: orange;
+    color: black;
+}</string>
+       </property>
        <item>
         <property name="text">
          <string>Weekly</string>
@@ -200,17 +412,31 @@
    <widget class="QPushButton" name="optimize_button">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>230</y>
+      <x>170</x>
+      <y>260</y>
       <width>211</width>
-      <height>31</height>
+      <height>35</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Arial Narrow</family>
-      <pointsize>20</pointsize>
+      <pointsize>-1</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
     </property>
     <property name="text">
      <string>Optimize workflow</string>
@@ -219,17 +445,31 @@
    <widget class="QPushButton" name="exit_button">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>270</y>
-      <width>81</width>
-      <height>31</height>
+      <x>390</x>
+      <y>260</y>
+      <width>191</width>
+      <height>35</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Arial Narrow</family>
-      <pointsize>20</pointsize>
+      <pointsize>-1</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">    QPushButton {
+        background-color: orange;
+        color: black;
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: &quot;Arial Narrow&quot;, sans-serif;
+    }
+    
+    QPushButton:pressed {
+        background-color: darkorange; /* Change color when button is pressed */
+    }</string>
     </property>
     <property name="text">
      <string>Exit</string>
@@ -238,10 +478,10 @@
    <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>390</x>
       <y>0</y>
-      <width>184</width>
-      <height>251</height>
+      <width>191</width>
+      <height>241</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -250,15 +490,23 @@
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>50</height>
+         <height>75</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <family>Arial Narrow</family>
-         <pointsize>20</pointsize>
+         <family>Arial</family>
+         <pointsize>-1</pointsize>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}</string>
        </property>
        <property name="text">
         <string>Most optimized days</string>
@@ -266,17 +514,33 @@
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="optimized_days_label">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>300</height>
+        </size>
+       </property>
        <property name="font">
         <font>
-         <family>Arial Narrow</family>
-         <pointsize>17</pointsize>
+         <family>Arial</family>
+         <pointsize>-1</pointsize>
          <bold>false</bold>
          <kerning>true</kerning>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: darkorange;
+}</string>
        </property>
        <property name="text">
         <string>waiting to be optimized...</string>
@@ -284,22 +548,14 @@
        <property name="alignment">
         <set>Qt::AlignHCenter|Qt::AlignTop</set>
        </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
     </layout>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>570</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

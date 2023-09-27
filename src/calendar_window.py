@@ -16,7 +16,8 @@ class CalendarWindow(QMainWindow):
         self.lost_days_num = self.findChild(QLabel, "numberLostDays")
         self.date_select = self.findChild(QPushButton, "date_select_button")
         self.calculate_work_button = self.findChild(QPushButton, "calculate_workflow_button")
-        self.optimize_work_button = self.findChild(QPushButton, "optimize_workflow_button")        
+        self.optimize_work_button = self.findChild(QPushButton, "optimize_workflow_button")
+        self.exit_button = self.findChild(QPushButton, "exit_button")        
         self.work_days_label = self.findChild(QLabel, "working_days_label")
         self.work_days_num = self.findChild(QLabel, "numberWorkDays")
         self.days_selected = self.findChild(QLabel, "days_selected_label")
@@ -35,7 +36,7 @@ class CalendarWindow(QMainWindow):
         self.highlight_format.setForeground(QColor("black"))
 
         self.holidays_format = QTextCharFormat()
-        self.holidays_format.setBackground(QColor('orange'))
+        self.holidays_format.setBackground(QColor(255, 128, 128))
         self.holidays_format.setForeground(QColor('black'))
 
         self.holiday_highlighted_format = QTextCharFormat()
@@ -43,6 +44,7 @@ class CalendarWindow(QMainWindow):
         self.holiday_highlighted_format.setForeground(QColor('black'))
 
         self.cal.clicked.connect(self.date_is_clicked)
+        self.exit_button.clicked.connect(self.exit_button_event)
         self.date_select.clicked.connect(self.setting_date_using_boxes)
         self.calculate_work_button.clicked.connect(self.calculate_workflow_button_event)
         self.optimize_work_button.clicked.connect(self.optimize_workflow_button_event)
@@ -71,7 +73,7 @@ class CalendarWindow(QMainWindow):
 
 
     def mark_holidays(self):
-        
+
         for i in self.holidays_dates:
             self.cal.setDateTextFormat(i, self.holidays_format)
 
@@ -173,15 +175,15 @@ class CalendarWindow(QMainWindow):
         
         if date in self.holidays_dates:
             index = self.holidays_dates.index(date)
-            self.day_description.setStyleSheet('color: orange')
+            self.day_description.setStyleSheet('color: rgb(255, 128, 128); font-size: 30px;')
             self.day_description.setText(f'{self.holidays_full[index]["TYPE"]}: {day_name} \n{self.holidays_full[index]["DAY_DESC"]}')
         
         if date not in self.holidays_dates and day_num in WORK_DAYS:
-            self.day_description.setStyleSheet('color: rgb(255, 203, 204)')
+            self.day_description.setStyleSheet('color: #5C7D8A; font-size: 30px;')
             self.day_description.setText(f'Work day: {day_name}')
 
         if date not in self.holidays_dates and day_num not in WORK_DAYS:
-            self.day_description.setStyleSheet('color: rgb(255, 233, 204)')            
+            self.day_description.setStyleSheet('color: rgb(255, 233, 204); font-size: 30px;')  
             self.day_description.setText(f'Weekend: {day_name}')
 
 #TODO errors if datespan wasn't selected
@@ -193,6 +195,10 @@ class CalendarWindow(QMainWindow):
     def optimize_workflow_button_event(self):
         optimize_workflow = MeetingOptimizer(self, self.begin_date, self.end_date, self.holidays_dates)
         optimize_workflow.show()
+
+
+    def exit_button_event(self):
+        self.close()
 
     
 
