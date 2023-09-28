@@ -26,7 +26,7 @@
       <x>10</x>
       <y>0</y>
       <width>158</width>
-      <height>261</height>
+      <height>251</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -41,6 +41,7 @@
        <property name="font">
         <font>
          <family>Arial</family>
+           
          <bold>true</bold>
         </font>
        </property>
@@ -68,6 +69,7 @@
        <property name="font">
         <font>
          <family>Arial Narrow</family>
+           
         </font>
        </property>
        <property name="styleSheet">
@@ -102,6 +104,7 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
+           
         </font>
        </property>
        <property name="styleSheet">
@@ -136,6 +139,7 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
+           
         </font>
        </property>
        <property name="styleSheet">
@@ -170,6 +174,7 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
+           
         </font>
        </property>
        <property name="styleSheet">
@@ -204,6 +209,7 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
+           
         </font>
        </property>
        <property name="styleSheet">
@@ -238,6 +244,7 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
+           
         </font>
        </property>
        <property name="styleSheet">
@@ -272,6 +279,7 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
+           
         </font>
        </property>
        <property name="styleSheet">
@@ -318,6 +326,7 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial</family>
+           
          <bold>true</bold>
         </font>
        </property>
@@ -412,6 +421,7 @@ QComboBox QAbstractItemView {
     <property name="font">
      <font>
       <family>Arial Narrow</family>
+        
      </font>
     </property>
     <property name="styleSheet">
@@ -444,6 +454,7 @@ QComboBox QAbstractItemView {
     <property name="font">
      <font>
       <family>Arial Narrow</family>
+        
      </font>
     </property>
     <property name="styleSheet">
@@ -485,6 +496,7 @@ QComboBox QAbstractItemView {
        <property name="font">
         <font>
          <family>Arial</family>
+           
          <bold>true</bold>
         </font>
        </property>
@@ -518,6 +530,7 @@ QComboBox QAbstractItemView {
        <property name="font">
         <font>
          <family>Arial</family>
+           
          <bold>false</bold>
          <kerning>true</kerning>
         </font>
@@ -563,6 +576,7 @@ QComboBox QAbstractItemView {
        <property name="font">
         <font>
          <family>Arial</family>
+           
          <bold>false</bold>
         </font>
        </property>
@@ -592,6 +606,7 @@ QComboBox QAbstractItemView {
        <property name="font">
         <font>
          <family>Arial</family>
+           
          <bold>false</bold>
         </font>
        </property>
@@ -633,6 +648,7 @@ QComboBox QAbstractItemView {
        <property name="font">
         <font>
          <family>Arial</family>
+           
          <bold>true</bold>
         </font>
        </property>
@@ -679,6 +695,7 @@ QComboBox QAbstractItemView {
        <property name="font">
         <font>
          <family>Arial</family>
+           
          <bold>true</bold>
         </font>
        </property>
@@ -718,6 +735,7 @@ QComboBox QAbstractItemView {
     <property name="font">
      <font>
       <family>Arial</family>
+        
       <bold>true</bold>
      </font>
     </property>
@@ -734,6 +752,49 @@ QComboBox QAbstractItemView {
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="unoptimize_check">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>260</y>
+      <width>156</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Narrow</family>
+        
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    font-family: &quot;Arial Narrow&quot;, sans-serif;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+QCheckBox::indicator {
+    border: 2px solid black; /* Check frame color */
+    border-radius: 5px; /* Check frame border radius */
+    width: 10px; /* Check frame width */
+    height: 10px; /* Check frame height */
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: transparent; /* Unchecked background */
+}
+
+QCheckBox::indicator:checked {
+    background-color: orange; /* Checked background */
+}</string>
+    </property>
+    <property name="text">
+     <string>Unoptimize</string>
     </property>
    </widget>
   </widget>
