@@ -41,7 +41,6 @@
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>-1</pointsize>
          <bold>true</bold>
         </font>
        </property>
@@ -69,7 +68,6 @@
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -104,7 +102,6 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -139,7 +136,6 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -174,7 +170,6 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -209,7 +204,6 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -244,7 +238,6 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -279,7 +272,6 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -326,7 +318,6 @@ QCheckBox::indicator:checked {
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>-1</pointsize>
          <bold>true</bold>
         </font>
        </property>
@@ -421,7 +412,6 @@ QComboBox QAbstractItemView {
     <property name="font">
      <font>
       <family>Arial Narrow</family>
-      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -454,7 +444,6 @@ QComboBox QAbstractItemView {
     <property name="font">
      <font>
       <family>Arial Narrow</family>
-      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -496,7 +485,6 @@ QComboBox QAbstractItemView {
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>-1</pointsize>
          <bold>true</bold>
         </font>
        </property>
@@ -530,7 +518,6 @@ QComboBox QAbstractItemView {
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>-1</pointsize>
          <bold>false</bold>
          <kerning>true</kerning>
         </font>
@@ -554,6 +541,200 @@ QComboBox QAbstractItemView {
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>170</y>
+      <width>221</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="date_from">
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: black;
+}</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="date_till">
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: black;
+}</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>150</y>
+      <width>221</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}</string>
+       </property>
+       <property name="text">
+        <string>from</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}</string>
+       </property>
+       <property name="text">
+        <string>to</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>110</y>
+      <width>221</width>
+      <height>39</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+}</string>
+    </property>
+    <property name="text">
+     <string>Selected date range</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
   </widget>
  </widget>

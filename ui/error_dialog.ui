@@ -31,7 +31,6 @@
    <property name="font">
     <font>
      <family>Arial Narrow</family>
-     <pointsize>-1</pointsize>
      <italic>true</italic>
      <bold>false</bold>
      <underline>false</underline>

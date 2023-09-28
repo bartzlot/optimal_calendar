@@ -24,7 +24,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>495</width>
+      <width>580</width>
       <height>601</height>
      </rect>
     </property>
@@ -39,30 +39,30 @@
       <number>40</number>
      </property>
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="logo_label">
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>400</width>
          <height>120</height>
         </size>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>-1</pointsize>
          <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QLabel {
-    font-family: Arial, sans-serif;
-    font-size: 50px;
-    font-weight: bold;
-    color: black;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="text">
-        <string>Optimal Calendar</string>
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>logo/Screenshot_2023-09-28_at_14.08.26.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -80,7 +80,7 @@
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>-1</pointsize>
+           
         </font>
        </property>
        <property name="styleSheet">
@@ -113,7 +113,7 @@
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>-1</pointsize>
+           
         </font>
        </property>
        <property name="styleSheet">
@@ -146,7 +146,7 @@
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>-1</pointsize>
+           
         </font>
        </property>
        <property name="styleSheet">
@@ -179,7 +179,7 @@
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>-1</pointsize>
+           
         </font>
        </property>
        <property name="styleSheet">

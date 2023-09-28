@@ -23,9 +23,9 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>460</x>
       <y>240</y>
-      <width>401</width>
+      <width>131</width>
       <height>41</height>
      </rect>
     </property>
@@ -33,60 +33,6 @@
      <property name="spacing">
       <number>6</number>
      </property>
-     <item>
-      <widget class="QPushButton" name="save_button">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>50</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">    QPushButton {
-        background-color: orange;
-        color: black;
-        border-radius: 15px;
-        padding: 10px 20px;
-        font-size: 15px;
-        font-family: &quot;Arial Narrow&quot;, sans-serif;
-    }
-    
-    QPushButton:pressed {
-        background-color: darkorange; /* Change color when button is pressed */
-    }</string>
-       </property>
-       <property name="text">
-        <string>Save</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="defaults_button">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>50</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">    QPushButton {
-        background-color: orange;
-        color: black;
-        border-radius: 15px;
-        padding: 10px 20px;
-        font-size: 15px;
-        font-family: &quot;Arial Narrow&quot;, sans-serif;
-    }
-    
-    QPushButton:pressed {
-        background-color: darkorange; /* Change color when button is pressed */
-    }</string>
-       </property>
-       <property name="text">
-        <string>Defaults</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="exit_button">
        <property name="maximumSize">
@@ -142,7 +88,7 @@
          <property name="font">
           <font>
            <family>Arial</family>
-           <pointsize>-1</pointsize>
+             
            <bold>true</bold>
           </font>
          </property>
@@ -183,7 +129,7 @@
          <property name="font">
           <font>
            <family>Arial</family>
-           <pointsize>-1</pointsize>
+             
            <bold>true</bold>
           </font>
          </property>
@@ -230,7 +176,7 @@
          <property name="font">
           <font>
            <family>Arial</family>
-           <pointsize>-1</pointsize>
+             
            <bold>true</bold>
           </font>
          </property>
@@ -292,7 +238,7 @@
          <property name="font">
           <font>
            <family>Arial</family>
-           <pointsize>-1</pointsize>
+             
            <bold>true</bold>
           </font>
          </property>
