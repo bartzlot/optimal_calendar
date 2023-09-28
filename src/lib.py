@@ -16,7 +16,8 @@ from PyQt6.QtWidgets import (QWidget, QApplication,
                              QFileDialog, QCheckBox, QComboBox)
 
 from PyQt6.QtGui import (QPalette, QTextCharFormat, 
-                         QColor, QPainter, QCloseEvent)
+                         QColor, QPainter, QCloseEvent, QPixmap
+                         , QIcon)
 
 from PyQt6.QtCore import (Qt, QDate, QDateTime, 
                           QRect, QPoint, pyqtSignal)

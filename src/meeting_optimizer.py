@@ -24,11 +24,16 @@ class MeetingCalculator(QMainWindow):
         self.days_lost = self.findChild(QLabel, "days_lost")
         self.working_days = self.findChild(QLabel, "working_days")
         self.selected_days = self.findChild(QLabel, "selected_days")
+        self.date_from = self.findChild(QLabel, "date_from")
+        self.date_till = self.findChild(QLabel, "date_till")
 
         self.beg_date = bd
         self.end_date = ed
         self.database_copy = dt
 
+
+        self.date_from.setText(bd.toString("dd-MM-yyyy"))
+        self.date_till.setText(ed.toString("dd-MM-yyyy"))
         self.calculate_button.clicked.connect(self.calculating_workflow)
         self.exit_button.clicked.connect(self.exit_button_event)
 
@@ -148,10 +153,13 @@ class MeetingOptimizer(QMainWindow):
         self.friday_check = self.findChild(QCheckBox, "friday_check")
         self.saturday_check = self.findChild(QCheckBox, "saturday_check")
         self.sunday_check = self.findChild(QCheckBox, "sunday_check")
+        self.unoptimize_check = self. findChild(QCheckBox, "unoptimize_check")
 
         self.interval_specifier = self.findChild(QComboBox, "interval_checkbox")
 
         self.most_optimized_days = self.findChild(QLabel, "optimized_days_label")
+        self.date_from = self.findChild(QLabel, "date_from")
+        self.date_till = self.findChild(QLabel, "date_till")
 
         self.optimize_button = self.findChild(QPushButton, "optimize_button")
         self.exit_button = self.findChild(QPushButton, "exit_button")
@@ -160,6 +168,8 @@ class MeetingOptimizer(QMainWindow):
         self.end_date = ed
         self.database_copy = dt
 
+        self.date_from.setText(bd.toString("dd-MM-yyyy"))
+        self.date_till.setText(ed.toString("dd-MM-yyyy"))
         self.optimize_button.clicked.connect(self.optimize_workflow_button_event)
         self.exit_button.clicked.connect(self.exit_button_event)
 
@@ -287,7 +297,12 @@ class MeetingOptimizer(QMainWindow):
                 else:
                     pass
         
-        most_optimal_days = self.finding_most_optimal_days(days_data)
+        if self.unoptimize_check.isChecked():
+
+            most_optimal_days = self.finding_unoptimized_days(days_data)
+
+        else:
+            most_optimal_days = self.finding_most_optimal_days(days_data)
 
         return most_optimal_days
 
@@ -311,6 +326,25 @@ class MeetingOptimizer(QMainWindow):
             
         return most_optimal_days
 
+
+    def finding_unoptimized_days(self, days_data: list):
+        unoptimized_days = []
+        included_days_only = []
+
+        for day in days_data:
+
+            if day['is_excluded'] is False:
+
+                included_days_only.append(day)
+
+        min_days_lost = max(included_days_only, key=lambda x:x['days_lost'])
+
+        for day in included_days_only:
+            if day['days_lost'] == min_days_lost['days_lost']:
+
+                unoptimized_days.append(day)
+            
+        return unoptimized_days
 
     def finding_nearest_holiday_index(self, starting_date:QDate):
 

@@ -10,11 +10,15 @@ class MainMenu(QMainWindow):
         self.options_button = self.findChild(QPushButton, "options_button")
         self.quit_button = self.findChild(QPushButton, "quit_button")
         
+        self.logo = self.findChild(QLabel, "logo_label")
         self.db_manager = DatabaseManager()
         self.calendar = CalendarWindow(self.db_manager)
         self.list = EventList(self.db_manager, self.calendar)
         self.options = OptionsWindow(self.db_manager)
 
+        self.pixmap = QPixmap(DatabaseManager.creating_path_to_ui_file("logo.png"))
+        self.logo.setStyleSheet("QLabel { background-color: #5c6a9a; border-radius: 10px; padding: 5px; }")   
+        self.logo.setPixmap(self.pixmap)
 
         self.options_button.clicked.connect(self.options_button_event)
         self.event_list_button.clicked.connect(self.event_list_button_event)
@@ -49,6 +53,7 @@ class MainMenu(QMainWindow):
 
 
 app = QApplication(sys.argv)
+app.setWindowIcon(QIcon(DatabaseManager.creating_path_to_ui_file('app_icon.png')))
 window = MainMenu()
 window.show()
 sys.exit(app.exec())

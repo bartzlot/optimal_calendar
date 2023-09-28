@@ -186,15 +186,31 @@ class CalendarWindow(QMainWindow):
             self.day_description.setStyleSheet('color: rgb(255, 233, 204); font-size: 30px;')  
             self.day_description.setText(f'Weekend: {day_name}')
 
-#TODO errors if datespan wasn't selected
+
     def calculate_workflow_button_event(self):
-        calculate_workflow = MeetingCalculator(self, self.begin_date, self.end_date, self.holidays_dates)
-        calculate_workflow.show()
+
+        if self.begin_date == None or self.end_date == None:
+
+            date_select_error = Errorhandler()
+            date_select_error.error_handler("Please select date range...")
+
+        else:
+
+            calculate_workflow = MeetingCalculator(self, self.begin_date, self.end_date, self.holidays_dates)
+            calculate_workflow.show()
     
 
     def optimize_workflow_button_event(self):
-        optimize_workflow = MeetingOptimizer(self, self.begin_date, self.end_date, self.holidays_dates)
-        optimize_workflow.show()
+
+        if self.begin_date == None or self.end_date == None:
+
+            date_select_error = Errorhandler()
+            date_select_error.error_handler("Please select date range...")
+
+        else:
+
+            optimize_workflow = MeetingOptimizer(self, self.begin_date, self.end_date, self.holidays_dates)
+            optimize_workflow.show()
 
 
     def exit_button_event(self):

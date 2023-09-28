@@ -1,13 +1,16 @@
 from lib import *
 class DatabaseManager():
 
+
     def __init__(self) -> None: 
+
         self.database = []
         self.dates_list = []
         self.current_database = ''
-        self.default_marked_signature = "Holiday"
         load_dotenv()
         self.LAST_DB= os.getenv('DEFAULT_DATABASE')
+        self.default_marked_signature = os.getenv('DEFAULT_HOLIDAY_SIGNATURE')
+
 
     def getting_data_excel(self, directory: str):
         
@@ -86,6 +89,19 @@ class DatabaseManager():
         return str(file_path)
 
 
+    def updating_default_day_signature(self, new_signature: str):
+
+        for date in self.database:
+
+            if date['TYPE'] == self.default_marked_signature:
+
+                date['TYPE'] = new_signature
+
+        self.default_marked_signature = new_signature
+
+
+
+
 class Errorhandler(QDialog):
 
 
@@ -101,6 +117,7 @@ class Errorhandler(QDialog):
 
     def error_handler(self, error_mess):
         self.error_text_label.setText(str(error_mess))
+        self.exec()
         self.show()
 
     def ok_button_event(self):
