@@ -1,6 +1,6 @@
 from lib import *
 
-class MeetingCalculator(QMainWindow):
+class MeetingCalculator(QMainWindow): #TODO setting date backwards bug to resolve
 
 
     def __init__(self, parent, bd, ed, dt):
@@ -31,14 +31,27 @@ class MeetingCalculator(QMainWindow):
         self.end_date = ed
         self.database_copy = dt
 
-
-        self.date_from.setText(bd.toString("dd-MM-yyyy"))
-        self.date_till.setText(ed.toString("dd-MM-yyyy"))
+        self.checking_dates_order()
+        self.date_from.setText(self.beg_date.toString("dd-MM-yyyy"))
+        self.date_till.setText(self.end_date.toString("dd-MM-yyyy"))
         self.calculate_button.clicked.connect(self.calculating_workflow)
         self.exit_button.clicked.connect(self.exit_button_event)
 
 
+    def checking_dates_order(self):
+        """Checking if dates are in wrong order 
+        """
+        if self.beg_date > self.end_date:
+
+            self.beg_date, self.end_date = self.end_date, self.beg_date
+
+
     def getting_checks_state(self):
+        """Checks handling
+
+        Returns:
+            list: checked days 
+        """
         days_selected = []
 
         if self.monday_check.isChecked():
@@ -66,13 +79,19 @@ class MeetingCalculator(QMainWindow):
     
 
     def getting_interval_state(self):
+        """Handling interval settings
+
+        Returns:
+            int: selected options index
+        """
         interval_selected = self.interval_specifier.currentIndex()
 
         return interval_selected
     
 
     def calculating_workflow(self):
-
+        """Calculates workflow depending on interval settings, show calculations results
+        """
         WORKING_DAYS = self.getting_checks_state()
         INTERVAL_SETTING = self.getting_interval_state()
 
@@ -105,8 +124,17 @@ class MeetingCalculator(QMainWindow):
         self.selected_days.setText(str(days_selected))
 
 
-    def calculate_others(self, starting_date: QDate, ending_date: QDate, work_days: list, interval: int):
+    def calculate_others(self, starting_date: QDate, work_days: list, interval: int):
+        """Calculator for workflow within selected range
 
+        Args:
+            starting_date (QDate): starting date
+            work_days (list): work days list (week day naming)
+            interval (int): interavl option index
+
+        Returns:
+            int, int, int: calculated days
+        """
         days_lost = 0
         days_work = 0
         days_selected = 0
@@ -168,13 +196,22 @@ class MeetingOptimizer(QMainWindow):
         self.end_date = ed
         self.database_copy = dt
 
-        self.date_from.setText(bd.toString("dd-MM-yyyy"))
-        self.date_till.setText(ed.toString("dd-MM-yyyy"))
+        self.checking_dates_order()
+        self.date_from.setText(self.beg_date.toString("dd-MM-yyyy"))
+        self.date_till.setText(self.end_date.toString("dd-MM-yyyy"))
         self.optimize_button.clicked.connect(self.optimize_workflow_button_event)
         self.exit_button.clicked.connect(self.exit_button_event)
 
 
+    def checking_dates_order(self):
+
+        if self.beg_date > self.end_date:
+
+            self.beg_date, self.end_date = self.end_date, self.beg_date
+
+
     def getting_checks_state(self):
+
         days_selected = []
 
         if self.monday_check.isChecked():
@@ -202,6 +239,7 @@ class MeetingOptimizer(QMainWindow):
     
 
     def getting_interval_state(self):
+
         interval_selected = self.interval_specifier.currentIndex()
 
         return interval_selected
@@ -302,12 +340,14 @@ class MeetingOptimizer(QMainWindow):
             most_optimal_days = self.finding_unoptimized_days(days_data)
 
         else:
+
             most_optimal_days = self.finding_most_optimal_days(days_data)
 
         return most_optimal_days
 
 
     def finding_most_optimal_days(self, days_data: list):
+
         most_optimal_days = []
         included_days_only = []
 
@@ -340,11 +380,13 @@ class MeetingOptimizer(QMainWindow):
         min_days_lost = max(included_days_only, key=lambda x:x['days_lost'])
 
         for day in included_days_only:
+
             if day['days_lost'] == min_days_lost['days_lost']:
 
                 unoptimized_days.append(day)
             
         return unoptimized_days
+
 
     def finding_nearest_holiday_index(self, starting_date:QDate):
 

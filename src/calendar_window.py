@@ -5,6 +5,7 @@ class CalendarWindow(QMainWindow):
 
 
     def __init__(self, db_manager, parent = None):
+
         super(CalendarWindow, self).__init__(parent)
 
         uic.loadUi(DatabaseManager.creating_path_to_ui_file("calendar.ui"), self)
@@ -51,13 +52,21 @@ class CalendarWindow(QMainWindow):
 
         self.setting_current_date()
         self.mark_holidays()
-        
+
+
     def setting_current_date(self):
+        """Setting current date in calendar"""
+
         self.start_date_box.setDateTime(QDateTime.currentDateTime())
         self.end_date_box.setDateTime(QDateTime.currentDateTime())
 
 
     def mark_holidays_from_list(self, dates: list):
+        """Marks holidays from database (given list)
+
+        Args:
+            dates (list): list containing only dates of holidays
+        """
 
         for date in self.holidays_dates:
             self.cal.setDateTextFormat(date, QTextCharFormat())
@@ -69,20 +78,27 @@ class CalendarWindow(QMainWindow):
 
 
     def updating_database(self, database: list):
+        """Updates database using database from the other window wchich was changed
+
+        Args:
+            database (list): new edited database
+        """
         self.holidays_full = database
 
 
     def mark_holidays(self):
-
+        """Marking holidays (changing color in calendar)
+        """
         for i in self.holidays_dates:
             self.cal.setDateTextFormat(i, self.holidays_format)
 
 
-    def update_calendar_by_list(self):
-        self.mark_holidays()
+    def format_range(self, format: QTextCharFormat):
+        """Formating date range selected by user (changing color)
 
-
-    def format_range(self, format):
+        Args:
+            format (QTextCharFormat): date box format (color etc...)
+        """
         if self.begin_date and self.end_date:
             bd = min(self.begin_date, self.end_date)
             ed = max(self.begin_date, self.end_date)
@@ -100,41 +116,86 @@ class CalendarWindow(QMainWindow):
         
 
     def counting_work_days(self, start_selected: QDate, end_selected: QDate):
+        """Counts working days within selected date range
+
+        Args:
+            start_selected (QDate): starting date selected
+            end_selected (QDate): ending date selected
+
+        Returns:
+            int: amount of work days
+        """
         WORKING_DAYS = [1, 2, 3, 4, 5]
         counter = 0
+
         while start_selected <= end_selected:
+
             if start_selected.dayOfWeek() in WORKING_DAYS and start_selected not in self.holidays_dates:
                 counter += 1
+
             start_selected = start_selected.addDays(1) 
+
         return counter
 
 
     def counting_lost_days(self, start_selected: QDate, end_selected: QDate):
+        """Counts lost days within selected date range
+
+        Args:
+            start_selected (QDate): starting date selected
+            end_selected (QDate): ending date selected
+
+        Returns:
+            int: amount of lost days
+        """
         counter = 0
+
         while start_selected <= end_selected:
 
             if start_selected in self.holidays_dates:
                 counter += 1
             
             start_selected = start_selected.addDays(1)
+
         return counter
 
 
     def counting_selected_days(self, start_selected: QDate, end_selected: QDate):
+        """Counts selected days within selected date range
+
+        Args:
+            start_selected (QDate): starting date selected
+            end_selected (QDate): ending date selected
+
+        Returns:
+            int: amount of selected days
+        """
         counter = 0
+
         while start_selected <= end_selected:
+
             counter += 1
             start_selected = start_selected.addDays(1) 
+
         return counter
 
 
     def updating_counting_labels(self, lost_days: int, work_days: int, selected_days: int):
+        """Updates labels assigned to counted days in selected range
+
+        Args:
+            lost_days (int): lost days amount
+            work_days (int): work days amount
+            selected_days (int): selected days amount
+        """
         self.work_days_num.setText(str(work_days))
         self.lost_days_num.setText(str(lost_days))
         self.days_selected_num.setText(str(selected_days))
 
 
     def setting_date_using_boxes(self):
+        """Setting date range using QDateEdit boxes
+        """
 
         if self.start_date_box.date() > self.end_date_box.date() or self.end_date_box.date() < self.start_date_box.date():
             t = self.start_date_box.date()
@@ -153,21 +214,35 @@ class CalendarWindow(QMainWindow):
         
 
     def date_is_clicked(self, date_val):
+        """Defines which date is clicked on calendar and update description, counting label, changes it in date boxes...
+
+        Args:
+            date_val (QDate): _description_
+        """
         self.updating_counting_labels(0, 0, 0)
         self.mark_holidays()
         self.format_range(QTextCharFormat())
         self.check_day_status(date_val)
+
         if QApplication.keyboardModifiers() & Qt.KeyboardModifier.ShiftModifier and self.begin_date:
+
             self.end_date = date_val
             self.end_date_box.setDate(date_val)
             self.format_range(self.highlight_format)
+
         else:
+
             self.begin_date = date_val
             self.start_date_box.setDate(date_val)
             self.end_date = None
 
 
     def check_day_status(self, date: QDate):
+        """Checks day status after clicking it and sets description depending on week day/holiday...
+
+        Args:
+            date (QDate): date clicked
+        """
         WORK_DAYS = [1, 2, 3, 4, 5]
         WEEK_DAYS_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
         day_num = date.dayOfWeek()
@@ -188,7 +263,8 @@ class CalendarWindow(QMainWindow):
 
 
     def calculate_workflow_button_event(self):
-
+        """Button click event
+        """
         if self.begin_date == None or self.end_date == None:
 
             date_select_error = Errorhandler()
@@ -201,7 +277,8 @@ class CalendarWindow(QMainWindow):
     
 
     def optimize_workflow_button_event(self):
-
+        """button event
+        """
         if self.begin_date == None or self.end_date == None:
 
             date_select_error = Errorhandler()
@@ -214,6 +291,7 @@ class CalendarWindow(QMainWindow):
 
 
     def exit_button_event(self):
+        
         self.close()
 
     

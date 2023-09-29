@@ -51,7 +51,6 @@ class MainMenu(QMainWindow):
         QApplication.quit()
     
 
-
 app = QApplication(sys.argv)
 app.setWindowIcon(QIcon(DatabaseManager.creating_path_to_ui_file('app_icon.png')))
 window = MainMenu()

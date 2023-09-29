@@ -1,10 +1,12 @@
 #libraries
 import pathlib
 
+import sys
+
+import os
+
 import pandas as pd
 pd.options.mode.chained_assignment = None
-
-import copy
 
 from dotenv import set_key, load_dotenv
 
@@ -23,9 +25,6 @@ from PyQt6.QtCore import (Qt, QDate, QDateTime,
                           QRect, QPoint, pyqtSignal)
 from PyQt6 import uic
 
-import sys
-
-import os
 
 #imports from different files
 from database import DatabaseManager, Errorhandler
